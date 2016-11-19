@@ -1,5 +1,24 @@
 html
   head= partial "partials/head"
   body
-    = yield
+    .orchestrator
+      .palm-header
+        .palm-header__left Marco Verna
+        .palm-header__right: i.icon--hamburger.js-toggle
+
+      .main-nav
+        h1.main-nav__title Marco Verna
+        .main-nav__subtitle Photographer
+
+        .main-nav__close.visible--on-eq-palm.js-toggle
+          i.icon--cross
+
+        ul.main-nav__categories
+          - dato.categories.sort_by(&:position).each do |category|
+            li.main-nav__categories__item class=("is-active" if "/#{current_page.path}" == category_path(category))
+              = link_to category.name, category_path(category)
+
+      .orchestrator__content
+        = yield
+
     = partial "partials/js_includes"

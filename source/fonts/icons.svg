@@ -13,8 +13,11 @@
     <glyph glyph-name="cross"
       unicode="&#xF102;"
       horiz-adv-x="512" d=" M405 375L286 256L405 137L375 107L256 226L137 107L107 137L226 256L107 375L137 405L256 286L375 405z" />
-    <glyph glyph-name="quote"
+    <glyph glyph-name="hamburger"
       unicode="&#xF103;"
+      horiz-adv-x="512" d=" M42.666 181.334V138.668H469.332V181.334H42.666zM42.666 288V245.334H469.332V288H42.666zM42.666 394.666V352H469.332V394.666H42.666z" />
+    <glyph glyph-name="quote"
+      unicode="&#xF104;"
       horiz-adv-x="512" d=" M0 448V64L192 256V448zM320 448V64L512 256V448z" />
   </font>
 </defs>

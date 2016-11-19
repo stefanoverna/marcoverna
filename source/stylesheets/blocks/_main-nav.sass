@@ -1,0 +1,67 @@
+.main-nav__title
+  text-transform: uppercase
+  font-weight: bold
+  +font-size(alpha)
+  line-height: 40px
+
+.main-nav__subtitle
+  +margin-bottom(3)
+
+.main-nav__categories__item
+  margin-left: -15px
+  margin-bottom: 10px
+  padding-left: 14px
+  border-left: 1px solid transparent
+
+  a
+    text-transform: uppercase
+    text-decoration: none
+
+  &.is-active, &:hover
+    border-left-color: $primary-color
+
+.main-nav__close
+  position: absolute
+  +top(3)
+  +right(3)
+
+  i
+    font-size: 40px
+    line-height: 40px
+
++at-breakpoint(eq-palm)
+  .main-nav
+    +position(fixed, 0 0 0 0)
+    background-color: white
+    z-index: 100
+    display: none
+    text-align: center
+    +padding(3)
+
+    &.is-active
+      display: block
+
+  .main-nav__categories__item
+    +font-size(gamma)
+    border-left: 0
+
+    a
+      color: $light-body-color
+      display: inline-block
+      border-bottom: 2px solid transparent
+
+    &.is-active a
+      border-bottom-color: $primary-color
+
++at-breakpoint(tab)
+  .main-nav
+    +position(fixed, 0 null 0 0)
+    display: block
+    width: 20%
+    +padding(3)
+    background-color: white
+    box-sizing: border-box
+
+  .orchestrator__content
+    float: right
+    width: 80%

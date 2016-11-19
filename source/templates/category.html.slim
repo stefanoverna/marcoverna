@@ -1,13 +1,12 @@
-h1.alpha Marco Verna
-
-ul
-  - dato.categories.sort_by(&:position).each do |category|
-    li= link_to category.name, category_path(category)
+- content_for(:head) do
+  = dato_meta_tags(category)
 
 - photos = dato.photos.select { |p| p.categories.include? category }.sort_by(&:position)
 
-- photos.each do |photo|
-  div
-    = image_tag photo.image.url(w: 300, fm: 'jpg', q: 90)
-    h6.gamma= photo.title
+.gallery
+  - photos.flatten.each do |photo|
+    .gallery__item data-width=photo.image.width data-height=photo.image.height
+      a.gallery__item__inner href=photo.image.url(w: 1900, fm: 'jpg', q: 90) data-caption=photo.title data-at-450=photo.image.url(w: 450, fm: 'jpg', q: 90) data-at-800=photo.image.url(w: 800, fm: 'jpg', q: 90) data-at-1366=photo.image.url(w: 1366, fm: 'jpg', q: 90)
+        = image_tag photo.image.url(h: 250, fm: 'jpg', q: 90)
+        h6.gallery__item__title: span= photo.title
 

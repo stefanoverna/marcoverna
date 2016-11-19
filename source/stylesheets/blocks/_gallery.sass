@@ -1,0 +1,32 @@
+.gallery
+  padding-top: 10px
+  margin-right: 10px
+  +clearfix
+
+.gallery__item
+  float: left
+  padding-left: 10px
+  padding-bottom: 10px
+
+  img
+    display: block
+
+.gallery__item__inner
+  display: block
+  position: relative
+
+.gallery__item__title
+  +position(absolute, 0 0 0 0)
+  background-color: rgba(black, 0.8)
+  display: flex
+  align-items: center
+  justify-content: center
+  text-align: center
+  color: white
+  opacity: 0
+  transition: opacity 0.2s $material-ease
+  font-weight: bold
+  +font-size(gamma)
+
+  .gallery__item:hover &
+    opacity: 0.8
