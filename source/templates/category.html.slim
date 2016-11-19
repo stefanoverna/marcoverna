@@ -1,0 +1,13 @@
+h1.alpha Marco Verna
+
+ul
+  - dato.categories.sort_by(&:position).each do |category|
+    li= link_to category.name, category_path(category)
+
+- photos = dato.photos.select { |p| p.categories.include? category }.sort_by(&:position)
+
+- photos.each do |photo|
+  div
+    = image_tag photo.image.url(w: 300, fm: 'jpg', q: 90)
+    h6.gamma= photo.title
+
