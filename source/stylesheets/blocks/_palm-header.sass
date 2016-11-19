@@ -9,9 +9,15 @@
   flex: 1
 
 .palm-header__left
-  +font-size(alpha)
   font-weight: bold
-  text-transform: uppercase
+  text-transform: lowercase
+  +font-size(alpha)
+  line-height: 40px
+  +heading-font-family
+  color: $light-body-color
+
+  span
+    color: $base-body-color
 
 .palm-header__right
   text-align: right

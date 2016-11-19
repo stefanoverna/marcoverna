@@ -4,7 +4,7 @@
 - photos = dato.photos.select { |p| p.categories.include? category }.sort_by(&:position)
 
 .gallery
-  - photos.flatten.each do |photo|
+  - photos.each do |photo|
     .gallery__item data-width=photo.image.width data-height=photo.image.height
       a.gallery__item__inner href=photo.image.url(w: 1900, fm: 'jpg', q: 90) data-caption=photo.title data-at-450=photo.image.url(w: 450, fm: 'jpg', q: 90) data-at-800=photo.image.url(w: 800, fm: 'jpg', q: 90) data-at-1366=photo.image.url(w: 1366, fm: 'jpg', q: 90)
         = image_tag photo.image.url(h: 250, fm: 'jpg', q: 90)

@@ -1,9 +1,14 @@
 .main-nav__title
-  text-transform: uppercase
   font-weight: bold
+  text-transform: lowercase
   +font-size(alpha)
   line-height: 40px
+  +heading-font-family
   +margin-bottom(3)
+  color: $light-body-color
+
+  span
+    color: $base-body-color
 
 .main-nav__categories__item
   margin-left: -15px
@@ -47,6 +52,7 @@
   .main-nav__categories__item
     +font-size(gamma)
     border-left: 0
+    +margin-bottom(2)
 
     a
       color: $light-body-color
@@ -54,7 +60,7 @@
       border-bottom: 2px solid transparent
 
     &.is-active a
-      border-bottom-color: $primary-color
+      border-bottom-color: $base-body-color
 
 +at-breakpoint(desk)
   .main-nav
