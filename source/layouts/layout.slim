@@ -1,24 +1,23 @@
 html
   head= partial "partials/head"
   body
+    .palm-header.visible--on-lte-lap
+      .palm-header__left Marco Verna
+      .palm-header__right: i.icon--hamburger.js-toggle
+
     .orchestrator
-      .palm-header.visible--on-eq-palm
-        .palm-header__left Marco Verna
-        .palm-header__right: i.icon--hamburger.js-toggle
+      .orchestrator__left
+        .main-nav
+          h1.main-nav__title Marco Verna
 
-      .main-nav
-        h1.main-nav__title Marco Verna
-        .main-nav__subtitle Photographer
+          .main-nav__close.visible--on-lte-lap.js-toggle
+            i.icon--cross
 
-        .main-nav__close.visible--on-eq-palm.js-toggle
-          i.icon--cross
+          ul.main-nav__categories
+            - dato.categories.sort_by(&:position).each do |category|
+              li.main-nav__categories__item class=("is-active" if "/#{current_page.path}" == category_path(category))
+                = link_to category.name, category_path(category)
 
-        ul.main-nav__categories
-          - dato.categories.sort_by(&:position).each do |category|
-            li.main-nav__categories__item class=("is-active" if "/#{current_page.path}" == category_path(category))
-              = link_to category.name, category_path(category)
-
-      .orchestrator__content
-        = yield
+      .orchestrator__main-content= yield
 
     = partial "partials/js_includes"
