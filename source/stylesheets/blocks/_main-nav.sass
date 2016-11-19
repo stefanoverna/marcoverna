@@ -21,7 +21,7 @@
 .main-nav__close
   position: absolute
   +top(3)
-  +right(3)
+  right: 10px
 
   i
     font-size: 40px
@@ -38,6 +38,11 @@
 
     &.is-active
       display: block
+      opacity: 0
+      transition: opacity 0.2s $material-ease
+
+    &.is-active-after
+      opacity: 1
 
   .main-nav__categories__item
     +font-size(gamma)
