@@ -20,6 +20,9 @@ html
               li.main-nav__categories__item class=("is-active" if "/#{current_page.path}" == category_path(category))
                 = link_to category.name, category_path(category)
 
+            li.main-nav__categories__item class=("is-active" if current_page.path == "about.html")
+              = link_to "About", "/about.html"
+
       .orchestrator__main-content= yield
 
     = partial "partials/js_includes"
