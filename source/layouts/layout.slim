@@ -2,7 +2,8 @@ html
   head= partial "partials/head"
   body
     .palm-header.visible--on-lte-lap
-      .palm-header__left Marco<span>Verna</span>
+      = link_to "/", class: "palm-header__left" do
+        | Marco<span>Verna</span>
       .palm-header__right: i.icon--hamburger.js-toggle
 
     .orchestrator
