@@ -1,8 +1,11 @@
+- content_for(:head) do
+  = dato_meta_tags(dato.about)
+
 .about
   .grid--wide
-    .grid__item.desk-3-12
+    .grid__item.lap-3-12
       .about__image
         = image_tag dato.about.image.url(w: 250, fm: 'jpg')
-    .grid__item.desk-9-12
+    .grid__item.lap-9-12
       .about__content
         == dato.about.bio
