@@ -20,6 +20,7 @@
     "webpack": "1.13.2"
   },
   "dependencies": {
-    "fld-grd": "1.2.0"
+    "fld-grd": "1.2.0",
+    "font-fit": "^0.3.7"
   }
 }

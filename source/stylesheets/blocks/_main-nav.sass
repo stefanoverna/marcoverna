@@ -1,14 +1,17 @@
 .main-nav__title
   font-weight: bold
   text-transform: lowercase
+  line-height: 1.1
   +font-size(alpha)
-  line-height: 40px
   +heading-font-family
   +margin-bottom(3)
-  color: $light-body-color
 
-  span
-    color: $base-body-color
+  a
+    text-decoration: none
+    color: $light-body-color
+
+    span
+      color: $base-body-color
 
 .main-nav__categories__item
   margin-left: -16px
@@ -21,16 +24,17 @@
     text-decoration: none
 
   &.is-active, &:hover
-    border-left-color: $primary-color
+    border-left-color: $light-body-color
 
 .main-nav__close
   position: absolute
-  +top(3)
+  +center-horizontally
+  +bottom(4)
   right: 10px
 
   i
-    font-size: 40px
-    line-height: 40px
+    font-size: 60px
+    line-height: 60px
 
 +at-breakpoint(lte-lap)
   .main-nav
@@ -61,6 +65,9 @@
 
     &.is-active a
       border-bottom-color: $base-body-color
+
+  .main-nav__categories
+    +center
 
 +at-breakpoint(desk)
   .main-nav

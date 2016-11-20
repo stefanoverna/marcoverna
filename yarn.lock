@@ -160,10 +160,6 @@ babel-code-frame@^6.11.0:
     esutils "^2.0.2"
     js-tokens "^2.0.0"
 
-baguettebox.js:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/baguettebox.js/-/baguettebox.js-1.8.1.tgz#24083dddc8d954984a195c6783dee726d7a645e8"
-
 balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
@@ -736,6 +732,10 @@ flatten@^1.0.2:
 fld-grd@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/fld-grd/-/fld-grd-1.2.0.tgz#dbc8f9913aab8c136e39f02d24e13ff3e4a34986"
+
+font-fit:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/font-fit/-/font-fit-0.3.7.tgz#622d99ca2cbdf4931cb01ab7f6ef907bfd9ea859"
 
 for-in@^0.1.5:
   version "0.1.6"

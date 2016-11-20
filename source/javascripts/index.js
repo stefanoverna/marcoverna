@@ -1,8 +1,9 @@
 var FldGrd = require('fld-grd');
 var baguetteBox = require('./baguettebox');
+var fontFit = require('font-fit');
 
 var fldGrd = new FldGrd(document.querySelector('.gallery'), {
-  rowHeight: 250,
+  rowHeight: 290,
   dataWidth: 'data-width',
   dataHeight: 'data-height',
 });
@@ -29,5 +30,25 @@ baguetteBox.run('.gallery', {
         nav.classList.add('is-active-after');
       }, 0);
     }
+
+    fitTitle();
   });
 });
+
+function fitTitle() {
+  var title = document.querySelector('.main-nav__title');
+
+  var result = fontFit({
+    text: title.textContent,
+    font: 'bold 24px sans-serif',
+    space: title.clientWidth,
+    min: 20,
+    max: 80
+  });
+
+  title.style.fontSize = result.fontSize + 'px';
+}
+
+fitTitle();
+
+window.addEventListener('resize', fitTitle);

@@ -8,7 +8,8 @@ html
     .orchestrator
       .orchestrator__left
         .main-nav
-          h1.main-nav__title Marco<span>Verna</span>
+          h1.main-nav__title= link_to "/" do
+            | Marco<span>Verna</span>
 
           .main-nav__close.visible--on-lte-lap.js-toggle
             i.icon--cross
