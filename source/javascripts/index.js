@@ -1,6 +1,16 @@
 var FldGrd = require('fld-grd');
 var baguetteBox = require('./baguettebox');
 var fontFit = require('font-fit');
+require('konamize');
+
+window.konamize({
+  code: [70, 69, 83, 83, 79],
+  callback: function() { 
+    var el = document.createElement('div');
+    el.classList.add('easter');
+    document.body.appendChild(el);
+  }
+});
 
 var fldGrd = new FldGrd(document.querySelector('.gallery'), {
   rowHeight: 290,
@@ -12,6 +22,7 @@ fldGrd.update();
 
 baguetteBox.run('.gallery', {
   overlayBackgroundColor: 'white',
+  filter: /dato-images/,
 });
 
 [].forEach.call(document.querySelectorAll('.js-toggle'), function(el) {
