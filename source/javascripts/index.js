@@ -12,18 +12,22 @@ window.konamize({
   }
 });
 
-var fldGrd = new FldGrd(document.querySelector('.gallery'), {
-  rowHeight: 290,
-  dataWidth: 'data-width',
-  dataHeight: 'data-height',
-});
+var gallery = document.querySelector('.gallery');
 
-fldGrd.update();
+if (gallery) {
+  var fldGrd = new FldGrd(document.querySelector('.gallery'), {
+    rowHeight: 300,
+    dataWidth: 'data-width',
+    dataHeight: 'data-height',
+  });
 
-baguetteBox.run('.gallery', {
-  overlayBackgroundColor: 'white',
-  filter: /dato-images/,
-});
+  fldGrd.update();
+
+  baguetteBox.run('.gallery', {
+    overlayBackgroundColor: 'white',
+    filter: /datocms-assets/,
+  });
+}
 
 [].forEach.call(document.querySelectorAll('.js-toggle'), function(el) {
   el.addEventListener('click', function(e) {
