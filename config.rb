@@ -10,7 +10,8 @@ activate :directory_indexes
 activate :pagination
 activate :dato,
   token: ENV.fetch('DATOCMS_TOKEN'),
-  base_url: 'https://www.marcoverna.photo'
+  base_url: 'https://www.marcoverna.photo',
+  live_reload: true
 
 activate :external_pipeline,
   name: :webpack,
@@ -43,8 +44,3 @@ dato.categories.each do |category|
   )
 end
 
-# paginate(
-#   dato.articles.sort_by(&:published_at).reverse,
-#   '/articles',
-#   '/templates/articles.html'
-# )

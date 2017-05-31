@@ -1,16 +1,5 @@
 var FldGrd = require('fld-grd');
 var baguetteBox = require('./baguettebox');
-var fontFit = require('font-fit');
-require('konamize');
-
-window.konamize({
-  code: [70, 69, 83, 83, 79],
-  callback: function() { 
-    var el = document.createElement('div');
-    el.classList.add('easter');
-    document.body.appendChild(el);
-  }
-});
 
 var gallery = document.querySelector('.gallery');
 
@@ -49,21 +38,5 @@ if (gallery) {
     fitTitle();
   });
 });
-
-function fitTitle() {
-  var title = document.querySelector('.main-nav__title');
-
-  var result = fontFit({
-    text: title.textContent,
-    font: 'bold 24px sans-serif',
-    space: title.clientWidth,
-    min: 20,
-    max: 80
-  });
-
-  title.style.fontSize = result.fontSize + 'px';
-}
-
-fitTitle();
 
 window.addEventListener('resize', fitTitle);

@@ -1,6 +1,6 @@
 module PathHelpers
   def category_path(category)
-    if category.slug == 'overview'
+    if category.slug == 'portraits'
       '/index.html'
     else
       "/categories/#{category.slug}/index.html"
