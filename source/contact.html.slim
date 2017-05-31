@@ -1,3 +1,26 @@
 - content_for(:head) do
   = dato_meta_tags(dato.contact_page)
 
+.contact
+  .space--bottom-3
+    == dato.contact_page.text
+
+  form.form#js-contact-form data-email=dato.contact_page.email
+    .form__field
+      label.form__label for="name" Your name *
+      input type="text" name="name" id="name" placeholder="Insert your name"
+    .form__field
+      label.form__label for="email" Email *
+      input type="email" name="email" id="email" placeholder="your@address.com"
+    .form__field
+      label.form__label for="phone" Phone number *
+      input type="tel" name="phone" id="phone" placeholder="+1 123-4567890"
+    .form__field
+      label.form__label for="message" Message *
+      textarea id="message" name="message" placeholder="Write your message here" rows="10"
+
+    input type="hidden" name="_subject" value="New request from marcoverna.photo"
+
+    .form__actions
+      button.form__button Send request
+

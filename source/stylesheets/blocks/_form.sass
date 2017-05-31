@@ -1,0 +1,92 @@
+.form
+  fieldset
+    +padding(2)
+    +margin-bottom(2)
+    border-color: $border-color
+
+    &:last-child
+      margin-bottom: 0
+
+    legend
+      +font-size(beta)
+      padding: 0 10px
+      margin: 0 -10px
+
+  hr
+    +vertical-margin(2)
+
+.form__label
+  display: block
+  +margin-bottom(0.5)
+
+.form__field
+  +margin-bottom(1)
+
+  &:last-child
+    margin-bottom: 0
+
+.form__actions
+  +margin-top(3)
+
+.form__field--invalid
+  #{$all-text-inputs}, textarea
+    border: 1px solid $alert-color
+
+.form__error
+  color: $alert-color
+  +margin-top(1)
+  +font-size(smallprint)
+
+.form__hint
+  color: $light-body-color
+  +margin-top(1)
+  +font-size(smallprint)
+
+.form__input--large
+  +font-size(gamma)
+
+.form__block
+  +margin-bottom(3)
+  +padding-bottom(3)
+  border-bottom: 1px solid $border-color
+
+.form__field--with-prefix
+  position: relative
+
+  .form__field__prefix
+    +center-vertically
+    left: 0px
+    width: 2em
+    text-align: right
+    z-index: 2
+
+  .form__field__input *
+    padding-left: 2.5em
+
+.form__button
+  padding: 0.4em 0.8em
+  text-decoration: none
+  border: 1px solid $base-body-color
+  display: inline-block
+  text-transform: uppercase
+  vertical-align: middle
+  white-space: nowrap
+  font-family: inherit
+  cursor: pointer
+  line-height: inherit
+  background-color: transparent
+  color: $base-body-color
+  -webkit-appearance: none
+  border-radius: 0
+  box-sizing: border-box
+  transition: box-shadow 0.1s $material-ease, transform 0.1s $material-ease, text-shadow 0.1s $material-ease
+  font-size: 1.1em
+  box-shadow: 0 0 0 rgba(black, 0.2)
+
+  &:hover
+    box-shadow: 0 3px 5px rgba(black, 0.2)
+    text-shadow: 0 3px 3px rgba(black, 0.2)
+
+  &:active
+    box-shadow: 0 1px 3px rgba(black, 0.2)
+    text-shadow: 0 1px 1px rgba(black, 0.2)
