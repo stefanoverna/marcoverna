@@ -49,7 +49,7 @@
   font-family: var(--font-family);
   color: var(--color-text);
   background: var(--color-background);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
 }
 
 .input:focus {
@@ -82,16 +82,21 @@
   border-radius: 4px;
   cursor: pointer;
   font-family: var(--font-family);
-  transition: opacity 0.15s;
+  transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out);
 }
 
-.submit:hover {
+.submit:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.submit:hover:not(:disabled) {
   opacity: 0.9;
 }
 
 .submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .submit:focus-visible {

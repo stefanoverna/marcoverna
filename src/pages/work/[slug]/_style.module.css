@@ -12,7 +12,11 @@
   margin-bottom: 40px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: color 0.15s;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.back:active {
+  transform: scale(0.97);
 }
 
 .back:hover {
@@ -85,6 +89,19 @@
   break-inside: avoid;
   margin-bottom: 24px;
   text-decoration: none;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.moreItem:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .moreItem:hover {
+    transform: scale(1.02);
+  }
 }
 
 .moreItemTitle {

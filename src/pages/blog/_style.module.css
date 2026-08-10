@@ -26,6 +26,11 @@
 .postTitle a {
   color: var(--color-text);
   text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.postTitle a:active {
+  transform: scale(0.97);
 }
 
 .postTitle a:hover {
@@ -41,6 +46,19 @@
 .cover {
   display: block;
   margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.cover:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cover:hover {
+    transform: scale(1.02);
+  }
 }
 
 .readMore {
@@ -48,7 +66,11 @@
   color: var(--color-text-secondary);
   text-decoration: none;
   align-self: flex-start;
-  transition: color 0.15s;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.readMore:active {
+  transform: scale(0.97);
 }
 
 .readMore:hover {

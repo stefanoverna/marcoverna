@@ -14,6 +14,19 @@
   break-inside: avoid;
   margin-bottom: 48px;
   text-decoration: none;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.item:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item:hover {
+    transform: scale(1.02);
+  }
 }
 
 .itemTitle {

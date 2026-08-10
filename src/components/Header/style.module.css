@@ -26,7 +26,11 @@
   text-decoration: none;
   color: var(--color-text-faded);
   text-transform: uppercase;
-  transition: color 0.15s;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.nav a:active {
+  transform: scale(0.97);
 }
 
 .nav a:hover,

@@ -22,7 +22,11 @@
   font-size: 13px;
   color: var(--color-text-faded);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.social a:active {
+  transform: scale(0.97);
 }
 
 .social a:hover {

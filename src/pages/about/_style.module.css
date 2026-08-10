@@ -47,6 +47,19 @@
   break-inside: avoid;
   margin-bottom: 16px;
   line-height: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.instagramItem:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .instagramItem:hover {
+    transform: scale(1.02);
+  }
 }
 
 .instagramItem img {
@@ -61,18 +74,21 @@
 }
 
 .sectionHeading {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 700;
   margin: 0 0 32px;
   text-transform: uppercase;
-  letter-spacing: 1px;
   text-align: center;
 }
 
 .sectionHeading a {
   color: var(--color-text);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.sectionHeading a:active {
+  transform: scale(0.97);
 }
 
 .sectionHeading a:hover {
@@ -90,11 +106,13 @@
 .clientLogo :global(img) {
   filter: grayscale(100%);
   opacity: 0.6;
-  transition: opacity 0.2s;
+  transition: opacity var(--duration-normal) var(--ease-out);
 }
 
-.clientLogo :global(img:hover) {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .clientLogo :global(img):hover {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -118,6 +136,10 @@
   .title {
     font-size: 24px;
     margin-bottom: 20px;
+  }
+
+  .sectionHeading {
+    font-size: 24px;
   }
 }
 
