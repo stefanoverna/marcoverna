@@ -4,5 +4,10 @@
   import { createController } from '@datocms/content-link';
 
   const controller = createController();
-  controller.enableClickToEdit();
+
+  const isInFrame = window.self !== window.top;
+
+  if (!isInFrame) {
+    controller.enableClickToEdit();
+  }
 </script>
