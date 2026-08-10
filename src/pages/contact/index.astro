@@ -1,0 +1,48 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { seoPageTitle } from '~/lib/datocms/seo';
+import { graphql } from '~/lib/datocms/graphql';
+import { ContactForm } from '~/components/ContactForm';
+import styles from './_style.module.css';
+
+const query = graphql(`
+  query {
+    contact {
+      studioName
+      address
+      vat
+      phone
+      email
+    }
+  }
+`);
+
+const { contact } = await executeQuery(query);
+---
+
+<Layout pageSeo={seoPageTitle('Contact me')([])}>
+  <div class={styles.page}>
+    <div class={styles.layout}>
+      <div class={styles.info}>
+        <h1 class={styles.title}>Contact me</h1>
+
+        {contact?.studioName && <p class={styles.name}>{contact.studioName}</p>}
+        {contact?.address && <p>{contact.address}</p>}
+        {contact?.vat && <p>VAT n. {contact.vat}</p>}
+        {contact?.phone && <p>{contact.phone}</p>}
+        {
+          contact?.email && (
+            <p class={styles.email}>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            </p>
+          )
+        }
+      </div>
+
+      <div class={styles.form}>
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</Layout>

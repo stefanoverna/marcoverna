@@ -1,0 +1,37 @@
+{
+	"name": "marcoverna",
+	"type": "module",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && astro preview",
+		"astro": "astro",
+		"generate-types": "wrangler types",
+		"deploy": "astro build && wrangler deploy",
+		"cf-typegen": "wrangler types",
+		"generate-schema": "dotenv -c -- bash -c 'npx gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: Bearer $DATOCMS_CDA_TOKEN\" && npx gql.tada generate-output'",
+		"generate-cma-types": "dotenv -c -- datocms schema:generate ./datocms-schema.ts"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.10",
+		"@astrojs/cloudflare": "^14.2.0",
+		"@datocms/astro": "^0.6.13",
+		"@datocms/cda-client": "^0.2.10",
+		"astro": "^7.2.0",
+		"autosize": "^6.0.1",
+		"gql.tada": "^1.11.3",
+		"typescript": "^6.0.3"
+	},
+	"devDependencies": {
+		"@types/autosize": "^4.0.3",
+		"@types/node": "^26.2.0",
+		"datocms": "^4.0.29",
+		"datocms-structured-text-dastdown": "^6.0.0",
+		"dotenv-cli": "^11.0.0",
+		"wrangler": "^4.120.0"
+	}
+}

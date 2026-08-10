@@ -1,0 +1,15 @@
+---
+import { type FragmentOf, readFragment } from '~/lib/datocms/graphql';
+import { Image } from '@datocms/astro/Image';
+import { ResponsiveImageFragment } from './graphql';
+import type { ComponentProps } from 'astro/types';
+
+interface Props extends Omit<ComponentProps<typeof Image>, 'data'> {
+  data: FragmentOf<typeof ResponsiveImageFragment>;
+}
+
+const { data, ...rest } = Astro.props;
+const unmaskedData = readFragment(ResponsiveImageFragment, data);
+---
+
+<Image {...rest} data={unmaskedData} />

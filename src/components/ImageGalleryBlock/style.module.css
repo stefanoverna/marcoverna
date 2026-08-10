@@ -1,0 +1,9 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 48px 0;
+}
+.item {
+  margin: 0;
+}

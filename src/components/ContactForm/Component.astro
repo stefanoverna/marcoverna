@@ -1,0 +1,142 @@
+---
+import styles from './style.module.css';
+---
+
+<div class={styles.wrapper}>
+  <contact-form>
+    <div class={styles.success} data-success-message>
+      <p class={styles.successTitle}>Thank you for reaching out!</p>
+      <p class={styles.successText}>
+        I just received the message, and I will reply you as soon as
+        possible!
+      </p>
+    </div>
+
+    <form class={styles.form} method="post" action="#">
+      <div class={styles.field}>
+        <label for="name" class={styles.label}>
+          Your name*
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your name"
+          required
+          class={styles.input}
+        />
+      </div>
+
+      <div class={styles.field}>
+        <label for="email" class={styles.label}>
+          Your email*
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          required
+          class={styles.input}
+        />
+      </div>
+
+      <div class={styles.field}>
+        <label for="subject" class={styles.label}>
+          Subject*
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Subject"
+          required
+          class={styles.input}
+        />
+      </div>
+
+      <div class={styles.field}>
+        <label for="message" class={styles.label}>
+          Your message*
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your message"
+          rows="3"
+          required
+          class={styles.textarea}
+        ></textarea>
+      </div>
+
+      <button type="submit" class={styles.submit}>
+        Send message
+      </button>
+    </form>
+  </contact-form>
+</div>
+
+<script>
+  import autosize from 'autosize';
+
+  class ContactForm extends HTMLElement {
+    connectedCallback() {
+      const form = this.querySelector('form');
+      const successMessage = this.querySelector('[data-success-message]');
+      const submitButton = this.querySelector('button[type="submit"]');
+      const textarea = this.querySelector('textarea');
+
+      if (!form || !successMessage || !submitButton || !textarea) return;
+
+      autosize(textarea);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          return;
+        }
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value.toString();
+        });
+
+        submitButton.disabled = true;
+
+        try {
+          await fetch('https://submit-form.com/3mr6R5MpY', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+
+          form.reset();
+          successMessage.style.display = 'block';
+
+          autosize.update(textarea);
+
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert('There was an error sending your message. Please try again.');
+        } finally {
+          submitButton.disabled = false;
+        }
+      });
+
+      const inputs = form.querySelectorAll('input, textarea');
+      inputs.forEach((input) => {
+        input.addEventListener('input', () => {
+          successMessage.style.display = '';
+        });
+      });
+    }
+  }
+
+  customElements.define('contact-form', ContactForm);
+</script>

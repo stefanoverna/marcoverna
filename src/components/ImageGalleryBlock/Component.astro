@@ -1,0 +1,21 @@
+---
+import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { readFragment, type FragmentOf } from '~/lib/datocms/graphql';
+import { ImageGalleryBlockFragment } from './graphql';
+import styles from './style.module.css';
+
+interface Props {
+  block: FragmentOf<typeof ImageGalleryBlockFragment>;
+}
+
+const { block } = Astro.props;
+const data = readFragment(ImageGalleryBlockFragment, block);
+---
+
+<div class={styles.gallery}>
+  {data.images.map((img) => (
+    <figure class={styles.item}>
+      <ResponsiveImage data={img.responsiveImage} />
+    </figure>
+  ))}
+</div>

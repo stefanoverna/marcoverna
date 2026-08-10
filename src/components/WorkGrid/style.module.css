@@ -1,0 +1,38 @@
+.wrapper {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.grid {
+  columns: 2;
+  column-gap: 48px;
+}
+
+.item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 48px;
+  text-decoration: none;
+}
+
+.itemTitle {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 var(--container-padding-mobile);
+  }
+  .grid {
+    columns: 1;
+    column-gap: 12px;
+  }
+  .item {
+    margin-bottom: 32px;
+  }
+}

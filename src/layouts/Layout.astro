@@ -1,0 +1,34 @@
+---
+import { Seo, type TitleMetaLinkTag } from '@datocms/astro/Seo';
+import { Header } from '~/components/Header';
+import { Footer } from '~/components/Footer';
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { ensureTitle } from '~/lib/datocms/seo';
+import { LayoutQuery } from './_graphql';
+import '../styles/global.css';
+
+interface Props {
+  pageSeo?: TitleMetaLinkTag[];
+}
+
+const { pageSeo } = Astro.props;
+const data = await executeQuery(LayoutQuery);
+const seoData = ensureTitle()([...(pageSeo || []), ...(data._site.favicon || [])]);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo data={seoData} />
+
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer data={data} />
+  </body>
+</html>

@@ -1,0 +1,140 @@
+.page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.back {
+  font-size: 12px;
+  color: var(--color-text-faded);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.15s;
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.info {
+  position: sticky;
+  top: 160px;
+  padding-bottom: 48px;
+  max-width: 420px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.description :global(p) {
+  margin: 0;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 48px;
+}
+
+.moreWorks {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 80px var(--container-padding) 48px;
+}
+
+.moreTitle {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text);
+  margin: 0 0 32px;
+}
+
+.moreGrid {
+  columns: 3;
+  column-gap: 24px;
+}
+
+.moreItem {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+
+.moreItemTitle {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+@media (max-width: 1024px) {
+  .moreGrid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .info {
+    position: static;
+    padding-bottom: 0;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .images {
+    gap: 12px;
+  }
+
+  .moreWorks {
+    padding: 48px var(--container-padding-mobile) 32px;
+  }
+
+  .moreGrid {
+    columns: 1;
+    column-gap: 12px;
+  }
+
+  .moreItem {
+    margin-bottom: 12px;
+  }
+}

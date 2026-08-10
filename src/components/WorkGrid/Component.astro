@@ -1,0 +1,28 @@
+---
+import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { readFragment, type FragmentOf } from '~/lib/datocms/graphql';
+import { WorkFragment } from './graphql';
+import styles from './style.module.css';
+
+interface Props {
+  projects: FragmentOf<typeof WorkFragment>[];
+}
+
+const { projects } = Astro.props;
+const projectsData = projects.map((p) => readFragment(WorkFragment, p));
+---
+
+<div class={styles.wrapper}>
+  <div class={styles.grid}>
+    {
+      projectsData.map((project) => {
+        return (
+          <a href={`/work/${project.slug}`} class={styles.item}>
+            <ResponsiveImage data={project.coverImage.responsiveImage} />
+            <p class={styles.itemTitle}>{project.title}</p>
+          </a>
+        );
+      })
+    }
+  </div>
+</div>

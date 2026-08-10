@@ -1,0 +1,30 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    "./worker-configuration.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "scripts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/components/*": ["src/components/*"],
+      "~/layouts/*": ["src/layouts/*"],
+      "~/lib/*": ["src/lib/*"]
+    },
+    "types": [
+      "./worker-configuration.d.ts"
+    ],
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./schema.graphql",
+        "tadaOutputLocation": "./src/lib/datocms/graphql-env.d.ts"
+      }
+    ]
+  }
+}

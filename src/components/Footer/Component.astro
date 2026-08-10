@@ -1,0 +1,25 @@
+---
+import { readFragment, type FragmentOf } from '~/lib/datocms/graphql';
+import { FooterFragment } from './graphql';
+import styles from './style.module.css';
+
+interface Props {
+  data: FragmentOf<typeof FooterFragment>;
+}
+
+const { data } = Astro.props;
+const { contact, about } = readFragment(FooterFragment, data);
+const instagramUrl = about?.instagramUrl || 'https://www.instagram.com/marcoverna.studio/';
+---
+
+<footer class={styles.footer}>
+  <span class={styles.left}>&copy; {new Date().getFullYear()} Marco Verna</span>
+  <nav class={styles.social}>
+    <a href={instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
+    {
+      contact?.email && (
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      )
+    }
+  </nav>
+</footer>

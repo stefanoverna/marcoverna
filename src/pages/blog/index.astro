@@ -1,0 +1,45 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { seoPageTitle } from '~/lib/datocms/seo';
+import { BlogIndexQuery } from './_graphql';
+import styles from './_style.module.css';
+
+const { allBlogPosts } = await executeQuery(BlogIndexQuery);
+---
+
+<Layout pageSeo={seoPageTitle('Blog')([])}>
+  <div class={styles.page}>
+    {
+      allBlogPosts.length > 0 ? (
+        <div class={styles.posts}>
+          {allBlogPosts.map((post) => (
+            <article class={styles.post}>
+              <h2 class={styles.postTitle}>
+                <a href={`/blog/${post.slug}`}>{post.title}</a>
+              </h2>
+              <time class={styles.postDate}>
+                {new Date(post._firstPublishedAt).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+              </time>
+              {post.coverImage?.responsiveImage && (
+                <a href={`/blog/${post.slug}`} class={styles.cover}>
+                  <ResponsiveImage data={post.coverImage.responsiveImage} />
+                </a>
+              )}
+              <a href={`/blog/${post.slug}`} class={styles.readMore}>
+                Read more &rarr;
+              </a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class={styles.empty}>No posts yet.</p>
+      )
+    }
+  </div>
+</Layout>

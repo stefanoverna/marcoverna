@@ -1,0 +1,28 @@
+---
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { HeaderQuery } from './_graphql';
+import styles from './style.module.css';
+
+const { about, contact, _allBlogPostsMeta } = await executeQuery(HeaderQuery);
+const hasAbout = !!about;
+const hasContact = !!contact;
+const hasBlog = !!_allBlogPostsMeta.count;
+
+const currentPath = Astro.url.pathname;
+const isWork = currentPath === '/' || currentPath.startsWith('/work/');
+const isAbout = currentPath.startsWith('/about');
+const isContact = currentPath.startsWith('/contact');
+const isBlog = currentPath.startsWith('/blog');
+---
+
+<header class={styles.header}>
+  <a href="/" class={styles.logo}>
+    <img src="/marco_verna_logo.png" alt="marco verna" />
+  </a>
+  <nav class={styles.nav}>
+    <a href="/" class={isWork ? styles.navActive : ''}>work</a>
+    {hasAbout && <a href="/about" class={isAbout ? styles.navActive : ''}>about</a>}
+    {hasContact && <a href="/contact" class={isContact ? styles.navActive : ''}>contacts</a>}
+    {hasBlog && <a href="/blog" class={isBlog ? styles.navActive : ''}>blog</a>}
+  </nav>
+</header>

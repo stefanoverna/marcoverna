@@ -1,0 +1,13 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { WorkGrid } from '~/components/WorkGrid';
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { seoPageTitle } from '~/lib/datocms/seo';
+import { HomeQuery } from './_graphql';
+
+const { allWorks } = await executeQuery(HomeQuery);
+---
+
+<Layout pageSeo={seoPageTitle()([])}>
+  <WorkGrid projects={allWorks} />
+</Layout>

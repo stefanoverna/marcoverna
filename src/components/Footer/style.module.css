@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max);
+  margin: 56px auto 0;
+  padding: 56px var(--container-padding);
+  border-top: 1px solid var(--color-border);
+}
+
+.left {
+  font-size: 13px;
+  color: var(--color-text-faded);
+}
+
+.social {
+  display: flex;
+  gap: 24px;
+}
+
+.social a {
+  font-size: 13px;
+  color: var(--color-text-faded);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.social a:hover {
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    padding: 32px var(--container-padding-mobile);
+    gap: 16px;
+  }
+}

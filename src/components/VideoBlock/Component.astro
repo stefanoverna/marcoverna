@@ -1,0 +1,25 @@
+---
+import { readFragment, type FragmentOf } from '~/lib/datocms/graphql';
+import { VideoBlockFragment } from './graphql';
+import styles from './style.module.css';
+
+interface Props {
+  block: FragmentOf<typeof VideoBlockFragment>;
+}
+
+const { block } = Astro.props;
+const { video } = readFragment(VideoBlockFragment, block);
+---
+
+<div class={styles.video}>
+  <iframe
+    src={video.provider === 'youtube'
+      ? `https://www.youtube.com/embed/${video.providerUid}`
+      : `https://player.vimeo.com/video/${video.providerUid}`}
+    width="100%"
+    height="480"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>

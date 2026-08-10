@@ -1,0 +1,54 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import { StructuredText, ensureValidStructuredTextProps } from '@datocms/astro/StructuredText';
+import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { executeQuery } from '~/lib/datocms/executeQuery';
+import { ImageBlock } from '~/components/ImageBlock';
+import { ImageGalleryBlock } from '~/components/ImageGalleryBlock';
+import { VideoBlock } from '~/components/VideoBlock';
+import { BlogPostQuery } from './_graphql';
+import styles from './_style.module.css';
+
+const { slug } = Astro.params;
+
+const { blogPost } = await executeQuery(BlogPostQuery, { slug: slug! });
+
+const formattedDate = blogPost?._firstPublishedAt
+  ? new Date(blogPost._firstPublishedAt).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
+  : null;
+---
+
+<Layout pageSeo={blogPost?.seo}>
+  <article class={styles.page}>
+    <header class={styles.header}>
+      <a href="/blog" class={styles.back}>← Blog</a>
+      <h1 class={styles.title}>{blogPost?.title}</h1>
+      {formattedDate && <time class={styles.date}>{formattedDate}</time>}
+    </header>
+
+    {blogPost?.coverImage?.responsiveImage && (
+      <div class={styles.cover}>
+        <ResponsiveImage data={blogPost.coverImage.responsiveImage} />
+      </div>
+    )}
+
+    {blogPost?.content && (
+      <div class={styles.body}>
+        <StructuredText
+          {...ensureValidStructuredTextProps({
+            data: blogPost.content,
+            blockComponents: {
+              ImageBlockRecord: ImageBlock,
+              ImageGalleryBlockRecord: ImageGalleryBlock,
+              VideoBlockRecord: VideoBlock,
+            },
+          })}
+        />
+      </div>
+    )}
+  </article>
+</Layout>
