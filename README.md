@@ -1,46 +1,20 @@
-# Astro Starter Kit: Basics
+# marcoverna.studio
 
-```sh
-npm create astro@latest -- --template basics
+Portfolio site for **Marco Verna**, built with Astro 7, DatoCMS, and deployed on Cloudflare Workers.
+
+## Tech stack
+
+- **Framework**: [Astro 7](https://astro.build) (SSR)
+- **CMS**: [DatoCMS](https://datocms.com) via `@datocms/cda-client` + `@datocms/astro`
+- **Type-safe queries**: `gql.tada` with generated introspection types
+- **Deploy**: Cloudflare Workers (`wrangler deploy`)
+
+## Commands
+
+```bash
+npm run dev              # Start dev server
+npm run build            # Production build
+npm run deploy           # Build + deploy to Cloudflare
+npm run generate-schema  # Regenerate gql.tada introspection types
+npm run generate-cma-types # Regenerate DatoCMS CMA types
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
