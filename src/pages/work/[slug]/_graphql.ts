@@ -1,5 +1,4 @@
 import { ResponsiveImageFragment } from '~/components/ResponsiveImage';
-import { WorkFragment } from '~/components/WorkGrid';
 import { graphql } from '~/lib/datocms/graphql';
 
 export const WorkDetailQuery = graphql(
@@ -22,9 +21,15 @@ export const WorkDetailQuery = graphql(
         }
       }
       allWorks(first: 10, orderBy: position_ASC) {
-        ...WorkFragment
+        slug
+        title
+        coverImage {
+          responsiveImage(imgixParams: { fit: max, w: 800 }) {
+            ...ResponsiveImageFragment
+          }
+        }
       }
     }
   `,
-  [WorkFragment, ResponsiveImageFragment],
+  [ResponsiveImageFragment],
 );

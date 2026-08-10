@@ -1,5 +1,6 @@
 ---
 import { readFragment, type FragmentOf } from '~/lib/datocms/graphql';
+import { isDraftModeEnabled } from '~/lib/draftMode';
 import { FooterFragment } from './graphql';
 import styles from './style.module.css';
 
@@ -10,10 +11,21 @@ interface Props {
 const { data } = Astro.props;
 const { contact, about } = readFragment(FooterFragment, data);
 const instagramUrl = about?.instagramUrl || 'https://www.instagram.com/marcoverna.studio/';
+const draftMode = await isDraftModeEnabled(Astro.cookies);
 ---
 
 <footer class={styles.footer}>
-  <span class={styles.left}>&copy; {new Date().getFullYear()} Marco Verna</span>
+  <span class={styles.left}>
+    &copy; {new Date().getFullYear()} Marco Verna
+    <span class={styles.separator}>·</span>
+    <a
+      href={draftMode ? '/api/draft-mode/disable?redirect=' + Astro.url.pathname : '#'}
+      class={styles.draftToggle}
+      data-draft-toggle
+    >
+      {draftMode ? 'Exit preview' : 'Preview'}
+    </a>
+  </span>
   <nav class={styles.social}>
     <a href={instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
     {
@@ -23,3 +35,16 @@ const instagramUrl = about?.instagramUrl || 'https://www.instagram.com/marcovern
     }
   </nav>
 </footer>
+
+<script>
+  const toggle = document.querySelector('[data-draft-toggle]');
+  if (toggle && toggle.getAttribute('href') === '#') {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const token = prompt('Enter the preview secret token:');
+      if (token) {
+        window.location.href = `/api/draft-mode/enable?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(window.location.pathname)}&${Date.now()}`;
+      }
+    });
+  }
+</script>

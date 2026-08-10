@@ -14,16 +14,19 @@
 		"deploy": "astro build && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"generate-schema": "dotenv -c -- bash -c 'npx gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: Bearer $DATOCMS_CDA_TOKEN\" && npx gql.tada generate-output'",
-		"generate-cma-types": "dotenv -c -- datocms schema:generate ./datocms-schema.ts"
+		"generate-cma-types": "dotenv -c -- datocms schema:generate ./src/lib/datocms/datocms-schema.ts"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.10",
 		"@astrojs/cloudflare": "^14.2.0",
 		"@datocms/astro": "^0.6.13",
 		"@datocms/cda-client": "^0.2.10",
+		"@datocms/rest-client-utils": "^5.4.9",
 		"astro": "^7.2.0",
 		"autosize": "^6.0.1",
 		"gql.tada": "^1.11.3",
+		"jose": "^6.2.8",
+		"serialize-error": "^13.0.1",
 		"typescript": "^6.0.3"
 	},
 	"devDependencies": {

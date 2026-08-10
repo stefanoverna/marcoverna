@@ -1,2 +1,7 @@
-DATOCMS_CDA_TOKEN=your_published_token_here
+DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN=your_published_token_here
+DATOCMS_DRAFT_CONTENT_CDA_TOKEN=your_draft_token_here
+SECRET_API_TOKEN=your_secret_api_token_here
+SIGNED_COOKIE_JWT_SECRET=run_openssl_rand_hex_32
+DRAFT_MODE_COOKIE_NAME=datocms-draft-mode
+DATOCMS_BASE_EDITING_URL=https://your-project.admin.datocms.com/environments/main
 APIFY_API_TOKEN=your_apify_api_token_here

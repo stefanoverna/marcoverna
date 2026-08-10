@@ -8,18 +8,19 @@ interface Props {
 }
 
 const { block } = Astro.props;
-const { video } = readFragment(VideoBlockFragment, block);
+const data = readFragment(VideoBlockFragment, block);
+const { video, _editingUrl } = data;
 ---
 
-<div class={styles.video}>
+<div class={styles.video} data-datocms-content-link-url={_editingUrl}>
   <iframe
     src={video.provider === 'youtube'
       ? `https://www.youtube.com/embed/${video.providerUid}`
       : `https://player.vimeo.com/video/${video.providerUid}`}
     width="100%"
     height="480"
-    frameborder="0"
     allow="autoplay; fullscreen; picture-in-picture"
     allowfullscreen
+    style="border: 0"
   ></iframe>
 </div>

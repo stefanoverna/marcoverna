@@ -5,7 +5,7 @@ import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { HomeQuery } from './_graphql';
 
-const { allWorks } = await executeQuery(HomeQuery);
+const { allWorks } = await executeQuery(Astro, HomeQuery);
 ---
 
 <Layout pageSeo={seoPageTitle()([])}>

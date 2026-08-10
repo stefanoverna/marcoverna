@@ -12,6 +12,6 @@ const { block } = Astro.props;
 const data = readFragment(ImageBlockFragment, block);
 ---
 
-<figure class={styles.image}>
+<figure class={styles.image} data-datocms-content-link-boundary>
   <ResponsiveImage data={data.image.responsiveImage} />
 </figure>

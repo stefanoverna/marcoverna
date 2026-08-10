@@ -6,7 +6,7 @@ import { seoPageTitle } from '~/lib/datocms/seo';
 import { BlogIndexQuery } from './_graphql';
 import styles from './_style.module.css';
 
-const { allBlogPosts } = await executeQuery(BlogIndexQuery);
+const { allBlogPosts } = await executeQuery(Astro, BlogIndexQuery);
 ---
 
 <Layout pageSeo={seoPageTitle('Blog')([])}>

@@ -3,7 +3,7 @@ import { executeQuery } from '~/lib/datocms/executeQuery';
 import { HeaderQuery } from './_graphql';
 import styles from './style.module.css';
 
-const { about, contact, _allBlogPostsMeta } = await executeQuery(HeaderQuery);
+const { about, contact, _allBlogPostsMeta } = await executeQuery(Astro, HeaderQuery);
 const hasAbout = !!about;
 const hasContact = !!contact;
 const hasBlog = !!_allBlogPostsMeta.count;

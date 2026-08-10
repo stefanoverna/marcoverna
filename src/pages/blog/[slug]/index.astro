@@ -11,7 +11,7 @@ import styles from './_style.module.css';
 
 const { slug } = Astro.params;
 
-const { blogPost } = await executeQuery(BlogPostQuery, { slug: slug! });
+const { blogPost } = await executeQuery(Astro, BlogPostQuery, { slug: slug! });
 
 const formattedDate = blogPost?._firstPublishedAt
   ? new Date(blogPost._firstPublishedAt).toLocaleDateString('en-US', {
@@ -37,7 +37,7 @@ const formattedDate = blogPost?._firstPublishedAt
     )}
 
     {blogPost?.content && (
-      <div class={styles.body}>
+      <div class={styles.body} data-datocms-content-link-group>
         <StructuredText
           {...ensureValidStructuredTextProps({
             data: blogPost.content,

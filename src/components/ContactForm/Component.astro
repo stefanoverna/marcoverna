@@ -81,10 +81,10 @@ import styles from './style.module.css';
 
   class ContactForm extends HTMLElement {
     connectedCallback() {
-      const form = this.querySelector('form');
-      const successMessage = this.querySelector('[data-success-message]');
-      const submitButton = this.querySelector('button[type="submit"]');
-      const textarea = this.querySelector('textarea');
+      const form = this.querySelector<HTMLFormElement>('form');
+      const successMessage = this.querySelector<HTMLElement>('[data-success-message]');
+      const submitButton = this.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const textarea = this.querySelector<HTMLTextAreaElement>('textarea');
 
       if (!form || !successMessage || !submitButton || !textarea) return;
 
@@ -98,7 +98,7 @@ import styles from './style.module.css';
         }
 
         const formData = new FormData(form);
-        const data = {};
+        const data: Record<string, string> = {};
         formData.forEach((value, key) => {
           data[key] = value.toString();
         });

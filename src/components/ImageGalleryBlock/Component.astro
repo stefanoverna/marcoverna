@@ -12,7 +12,7 @@ const { block } = Astro.props;
 const data = readFragment(ImageGalleryBlockFragment, block);
 ---
 
-<div class={styles.gallery}>
+<div class={styles.gallery} data-datocms-content-link-boundary>
   {data.images.map((img) => (
     <figure class={styles.item}>
       <ResponsiveImage data={img.responsiveImage} />

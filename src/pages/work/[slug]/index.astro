@@ -7,7 +7,7 @@ import { WorkDetailQuery } from './_graphql';
 import styles from './_style.module.css';
 
 const { slug } = Astro.params;
-const { work, allWorks } = await executeQuery(WorkDetailQuery, { slug: slug! });
+const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, { slug: slug! });
 ---
 
 <Layout pageSeo={work?.seo}>
@@ -20,7 +20,7 @@ const { work, allWorks } = await executeQuery(WorkDetailQuery, { slug: slug! });
           <div class={styles.info}>
             <h1 class={styles.title}>{work.title}</h1>
             {work.description && (
-              <div class={styles.description}>
+              <div class={styles.description} data-datocms-content-link-group>
                 <StructuredText data={work.description} />
               </div>
             )}

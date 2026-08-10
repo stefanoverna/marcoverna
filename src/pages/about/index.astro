@@ -35,7 +35,7 @@ const query = graphql(
   [ResponsiveImageFragment],
 );
 
-const { about } = await executeQuery(query);
+const { about } = await executeQuery(Astro, query);
 
 const instagramPosts = await getInstagramFeed().catch(
   () => [],
@@ -55,7 +55,7 @@ const instagramPosts = await getInstagramFeed().catch(
         <h1 class={styles.title}>About</h1>
         {
           about?.bio && (
-            <div class={styles.bio}>
+            <div class={styles.bio} data-datocms-content-link-group>
               <StructuredText data={about.bio} />
             </div>
           )

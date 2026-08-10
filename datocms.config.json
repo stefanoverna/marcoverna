@@ -2,10 +2,13 @@
   "profiles": {
     "default": {
       "siteId": "223862",
+      "organizationId": "631110",
       "logLevel": "NONE",
       "migrations": {
         "directory": "./migrations",
-        "modelApiKey": "schema_migration"
+        "modelApiKey": "schema_migration",
+        "template": "",
+        "tsconfig": ""
       }
     }
   }
