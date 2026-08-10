@@ -37,6 +37,24 @@
   margin-bottom: 0;
 }
 
+.instagramGrid {
+  columns: 3;
+  column-gap: 16px;
+}
+
+.instagramItem {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 16px;
+  line-height: 0;
+}
+
+.instagramItem img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .section {
   margin-top: 80px;
   text-align: center;
@@ -91,6 +109,10 @@
 
   .clients {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .instagramGrid {
+    columns: 2;
   }
 
   .title {

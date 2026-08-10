@@ -8,12 +8,14 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const { contact } = readFragment(FooterFragment, data);
+const { contact, about } = readFragment(FooterFragment, data);
+const instagramUrl = about?.instagramUrl || 'https://www.instagram.com/marcoverna.studio/';
 ---
 
 <footer class={styles.footer}>
   <span class={styles.left}>&copy; {new Date().getFullYear()} Marco Verna</span>
   <nav class={styles.social}>
+    <a href={instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
     {
       contact?.email && (
         <a href={`mailto:${contact.email}`}>{contact.email}</a>

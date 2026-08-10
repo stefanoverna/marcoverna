@@ -17,6 +17,10 @@ export default defineConfig({
         context: 'server',
         access: 'secret',
       }),
+      APIFY_API_TOKEN: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
     },
   },
 });
