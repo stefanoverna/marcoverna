@@ -3,6 +3,7 @@ import { Seo, type TitleMetaLinkTag } from '@datocms/astro/Seo';
 import { Header } from '~/components/Header';
 import { Footer } from '~/components/Footer';
 import ContentLink from '~/components/ContentLink.astro';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { isDraftModeEnabled } from '~/lib/draftMode';
 import { ensureTitle } from '~/lib/datocms/seo';
@@ -34,5 +35,6 @@ const seoData = ensureTitle()([...(pageSeo || []), ...(data._site.favicon || [])
     </main>
     <Footer data={data} />
     {draftMode && <ContentLink />}
+    <DraftModeQueryListener query={LayoutQuery} />
   </body>
 </html>

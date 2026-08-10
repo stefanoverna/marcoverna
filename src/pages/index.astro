@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { WorkGrid } from '~/components/WorkGrid';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { HomeQuery } from './_graphql';
@@ -10,4 +11,5 @@ const { allWorks } = await executeQuery(Astro, HomeQuery);
 
 <Layout pageSeo={seoPageTitle()([])}>
   <WorkGrid projects={allWorks} />
+  <DraftModeQueryListener query={HomeQuery} />
 </Layout>

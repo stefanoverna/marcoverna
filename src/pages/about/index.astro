@@ -5,6 +5,7 @@ import {
   ResponsiveImage,
   ResponsiveImageFragment,
 } from '~/components/ResponsiveImage';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { graphql } from '~/lib/datocms/graphql';
@@ -107,4 +108,5 @@ const instagramPosts = await getInstagramFeed().catch(
       )
     }
   </div>
+  <DraftModeQueryListener query={query} />
 </Layout>

@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import { StructuredText } from '@datocms/astro/StructuredText';
 import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { WorkDetailQuery } from './_graphql';
 import styles from './_style.module.css';
@@ -50,4 +51,5 @@ const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, { slug: sl
         ))}
     </div>
   </div>
+  <DraftModeQueryListener query={WorkDetailQuery} variables={{ slug: slug! }} />
 </Layout>

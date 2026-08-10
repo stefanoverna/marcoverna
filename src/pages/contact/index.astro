@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/Layout.astro';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { graphql } from '~/lib/datocms/graphql';
@@ -45,4 +46,5 @@ const { contact } = await executeQuery(Astro, query);
       </div>
     </div>
   </div>
+  <DraftModeQueryListener query={query} />
 </Layout>

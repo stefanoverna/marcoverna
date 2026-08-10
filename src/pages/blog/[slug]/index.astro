@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import { StructuredText, ensureValidStructuredTextProps } from '@datocms/astro/StructuredText';
 import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { ImageBlock } from '~/components/ImageBlock';
 import { ImageGalleryBlock } from '~/components/ImageGalleryBlock';
@@ -51,4 +52,5 @@ const formattedDate = blogPost?._firstPublishedAt
       </div>
     )}
   </article>
+  <DraftModeQueryListener query={BlogPostQuery} variables={{ slug: slug! }} />
 </Layout>

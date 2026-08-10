@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import { ResponsiveImage } from '~/components/ResponsiveImage';
+import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { BlogIndexQuery } from './_graphql';
@@ -42,4 +43,5 @@ const { allBlogPosts } = await executeQuery(Astro, BlogIndexQuery);
       )
     }
   </div>
+  <DraftModeQueryListener query={BlogIndexQuery} />
 </Layout>
