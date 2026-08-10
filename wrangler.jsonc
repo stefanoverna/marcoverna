@@ -8,6 +8,9 @@
 		"directory": "./dist",
 		"binding": "ASSETS"
 	},
+	"cache": {
+		"enabled": true
+	},
 	"observability": {
 		"enabled": true
 	}
