@@ -23,5 +23,5 @@ export const GET: APIRoute = async (event) => {
     return handleUnexpectedError(error);
   }
 
-  return event.redirect(`${redirectUrl}?__preview=${Date.now()}`, 307);
+  return event.redirect(redirectUrl, 307);
 };

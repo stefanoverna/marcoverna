@@ -13,5 +13,9 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"vars": {
+		"DATOCMS_BASE_EDITING_URL": "https://marco-verna.admin.datocms.com",
+		"DRAFT_MODE_COOKIE_NAME": "datocms-draft-mode"
 	}
 }
