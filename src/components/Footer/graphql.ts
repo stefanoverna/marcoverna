@@ -5,8 +5,5 @@ export const FooterFragment = graphql(/* GraphQL */ `
     contact {
       email
     }
-    about {
-      instagramUrl
-    }
   }
 `);

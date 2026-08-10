@@ -8,7 +8,6 @@ import {
 import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { graphql } from '~/lib/datocms/graphql';
-import { getInstagramFeed } from '~/lib/instagram';
 import styles from './_style.module.css';
 
 const query = graphql(
@@ -28,7 +27,6 @@ const query = graphql(
             ...ResponsiveImageFragment
           }
         }
-        instagramUrl
       }
     }
   `,
@@ -37,9 +35,6 @@ const query = graphql(
 
 const { about } = await executeQuery(query);
 
-const instagramPosts = await getInstagramFeed('marcoverna.studio', 9).catch(
-  () => [],
-);
 ---
 
 <Layout pageSeo={seoPageTitle('About')([])}>
@@ -71,35 +66,6 @@ const instagramPosts = await getInstagramFeed('marcoverna.studio', 9).catch(
               <div class={styles.clientLogo}>
                 <ResponsiveImage data={img.responsiveImage} />
               </div>
-            ))}
-          </div>
-        </div>
-      )
-    }
-
-    {
-      instagramPosts.length > 0 && (
-        <div class={styles.section}>
-          <h2 class={styles.sectionHeading}>
-            <a
-              href={
-                about?.instagramUrl ||
-                'https://www.instagram.com/marcoverna.studio/'
-              }
-            >
-              Instagram
-            </a>
-          </h2>
-          <div class={styles.instagramGrid}>
-            {instagramPosts.map((post) => (
-              <a
-                href={post.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={styles.instagramItem}
-              >
-                <img src={post.proxiedUri} alt={post.caption} loading="lazy" />
-              </a>
             ))}
           </div>
         </div>

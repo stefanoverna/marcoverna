@@ -79,24 +79,6 @@
   opacity: 1;
 }
 
-.instagramGrid {
-  columns: 3;
-  column-gap: 16px;
-}
-
-.instagramItem {
-  display: block;
-  break-inside: avoid;
-  margin-bottom: 16px;
-  line-height: 0;
-}
-
-.instagramItem img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 @media (max-width: 768px) {
   .page {
     padding: 0 var(--container-padding-mobile);
@@ -109,10 +91,6 @@
 
   .clients {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .instagramGrid {
-    columns: 2;
   }
 
   .title {
