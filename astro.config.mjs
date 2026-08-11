@@ -1,11 +1,21 @@
 // @ts-check
 import cloudflare from '@astrojs/cloudflare';
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Geist',
+      cssVariable: '--font-geist',
+      weights: [400, 600, 700],
+      subsets: ['latin'],
+      fallbacks: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+    },
+  ],
   cache: {
     provider: { entrypoint: './src/debug-cache-provider.ts' },
   },

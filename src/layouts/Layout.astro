@@ -1,4 +1,5 @@
 ---
+import Font from 'astro/components/Font.astro';
 import { Seo, type TitleMetaLinkTag } from '@datocms/astro/Seo';
 import { Header } from '~/components/Header';
 import { Footer } from '~/components/Footer';
@@ -29,6 +30,7 @@ const seoData = ensureTitle()([
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Font cssVariable="--font-geist" preload />
     <Seo data={seoData} />
   </head>
   <body>
