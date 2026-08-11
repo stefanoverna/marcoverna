@@ -67,6 +67,20 @@ const layoutQuery = `
   }
 `;
 
+const headerQuery = `
+  query Header {
+    about {
+      __typename
+    }
+    contact {
+      __typename
+    }
+    blogPost {
+      id
+    }
+  }
+`;
+
 type QueryInfo = {
   name: string;
   query: string;
@@ -98,13 +112,18 @@ async function executeQuery(name: string, query: string): Promise<QueryInfo> {
 async function main() {
   console.log('=== DatoCMS Queries Cache Tags ===\n');
 
-  const [aboutResult, layoutResult] = await Promise.all([
+  const [aboutResult, layoutResult, headerResult] = await Promise.all([
     executeQuery('About Page Query', aboutQuery),
     executeQuery('Layout Query', layoutQuery),
+    executeQuery('Header Query', headerQuery),
   ]);
 
   const allCdaTags = [
-    ...new Set([...aboutResult.cacheTags, ...layoutResult.cacheTags]),
+    ...new Set([
+      ...aboutResult.cacheTags,
+      ...layoutResult.cacheTags,
+      ...headerResult.cacheTags,
+    ]),
   ].sort();
 
   console.log(`\n=== Aggregated DatoCMS cache tags (${allCdaTags.length}) ===`);

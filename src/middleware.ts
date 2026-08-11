@@ -62,6 +62,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response = await next();
   }
 
+  const contentType = response.headers.get('content-type') || '';
+
+  if (!draft && contentType.includes('text/html')) {
+    // Astro applies the cache headers as soon as this middleware returns, but
+    // with streaming the response resolves before the body is rendered — so
+    // any executeQuery() inside Layout/Header/Footer would register its cache
+    // tags too late. Buffering the body here forces the whole page to render
+    // (and every query to run) before the tags are serialized.
+    response = new Response(await response.arrayBuffer(), response);
+  }
+
   response.headers.set(
     'Content-Security-Policy',
     `frame-ancestors 'self' https://plugins-cdn.datocms.com ${baseEditingOrigin}`,
@@ -70,7 +81,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (draft) {
     response.headers.set('Cache-Control', 'private, no-store');
 
-    const contentType = response.headers.get('content-type') || '';
     if (contentType.includes('text/html')) {
       const rewriter = new HTMLRewriter()
         .on('a[href]', new DraftLinkRewriter('href', url.origin))
