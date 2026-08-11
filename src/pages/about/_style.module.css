@@ -84,7 +84,9 @@
 .sectionHeading a {
   color: var(--color-text);
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .sectionHeading a:active {

@@ -27,9 +27,18 @@ export const BlogPostQuery = graphql(
             ...VideoBlockFragment
           }
         }
-        seo: _seoMetaTags { attributes content tag }
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
       }
     }
   `,
-  [ImageBlockFragment, ImageGalleryBlockFragment, VideoBlockFragment, ResponsiveImageFragment],
+  [
+    ImageBlockFragment,
+    ImageGalleryBlockFragment,
+    VideoBlockFragment,
+    ResponsiveImageFragment,
+  ],
 );

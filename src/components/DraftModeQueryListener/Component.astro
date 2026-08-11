@@ -2,7 +2,10 @@
 import { QueryListener } from '@datocms/astro/QueryListener';
 import type { QueryListenerOptions } from '@datocms/astro/QueryListener';
 import { convertToAutoPaginationQueryAndVariables } from '@datocms/cda-client';
-import { DATOCMS_DRAFT_CONTENT_CDA_TOKEN, DATOCMS_BASE_EDITING_URL } from 'astro:env/server';
+import {
+  DATOCMS_DRAFT_CONTENT_CDA_TOKEN,
+  DATOCMS_BASE_EDITING_URL,
+} from 'astro:env/server';
 import { isDraftModeEnabled } from '~/lib/draftMode';
 
 /*
@@ -18,7 +21,11 @@ type Props<QueryResult, QueryVariables> = Omit<
 
 const draftModeEnabled = await isDraftModeEnabled(Astro);
 
-const { query: originalQuery, variables: originalVariables, ...rest } = Astro.props;
+const {
+  query: originalQuery,
+  variables: originalVariables,
+  ...rest
+} = Astro.props;
 
 const [query, variables] = convertToAutoPaginationQueryAndVariables(
   originalQuery,
@@ -26,15 +33,17 @@ const [query, variables] = convertToAutoPaginationQueryAndVariables(
 );
 ---
 
-{draftModeEnabled && (
-  <QueryListener
-    {...rest}
-    query={query}
-    variables={variables}
-    token={DATOCMS_DRAFT_CONTENT_CDA_TOKEN}
-    excludeInvalid
-    includeDrafts
-    contentLink="v1"
-    baseEditingUrl={DATOCMS_BASE_EDITING_URL}
-  />
-)}
+{
+  draftModeEnabled && (
+    <QueryListener
+      {...rest}
+      query={query}
+      variables={variables}
+      token={DATOCMS_DRAFT_CONTENT_CDA_TOKEN}
+      excludeInvalid
+      includeDrafts
+      contentLink="v1"
+      baseEditingUrl={DATOCMS_BASE_EDITING_URL}
+    />
+  )
+}

@@ -8,7 +8,10 @@ import { isDraftModeEnabled } from '../draftMode';
 import type { APIContext } from 'astro';
 import type { TadaDocumentNode } from 'gql.tada';
 
-export async function executeQuery<TResult, TVariables = Record<string, unknown>>(
+export async function executeQuery<
+  TResult,
+  TVariables = Record<string, unknown>,
+>(
   context: APIContext,
   query: TadaDocumentNode<TResult, TVariables>,
   variables?: TVariables,

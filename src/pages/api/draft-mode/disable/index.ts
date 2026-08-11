@@ -1,6 +1,10 @@
 import type { APIRoute } from 'astro';
-import { disableDraftMode } from '~/lib/draftMode';
-import { handleUnexpectedError, invalidRequestResponse, isRelativeUrl } from '../../utils';
+import { disableDraftMode, withoutDraftPrefix } from '~/lib/draftMode';
+import {
+  handleUnexpectedError,
+  invalidRequestResponse,
+  isRelativeUrl,
+} from '../../utils';
 
 export const GET: APIRoute = (event) => {
   const { url } = event;
@@ -16,5 +20,5 @@ export const GET: APIRoute = (event) => {
     return handleUnexpectedError(error);
   }
 
-  return event.redirect(redirectUrl, 307);
+  return event.redirect(withoutDraftPrefix(redirectUrl), 307);
 };

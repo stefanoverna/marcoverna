@@ -8,7 +8,7 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
   cache: {
-    provider: cacheCloudflare(),
+    provider: { entrypoint: './src/debug-cache-provider.ts' },
   },
   vite: {
     ssr: {

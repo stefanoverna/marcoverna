@@ -1,7 +1,11 @@
 import type { APIRoute } from 'astro';
 import { SECRET_API_TOKEN } from 'astro:env/server';
-import { enableDraftMode } from '~/lib/draftMode';
-import { handleUnexpectedError, invalidRequestResponse, isRelativeUrl } from '../../utils';
+import { enableDraftMode, withDraftPrefix } from '~/lib/draftMode';
+import {
+  handleUnexpectedError,
+  invalidRequestResponse,
+  isRelativeUrl,
+} from '../../utils';
 
 export const GET: APIRoute = async (event) => {
   const { url } = event;
@@ -23,5 +27,5 @@ export const GET: APIRoute = async (event) => {
     return handleUnexpectedError(error);
   }
 
-  return event.redirect(redirectUrl, 307);
+  return event.redirect(withDraftPrefix(redirectUrl), 307);
 };

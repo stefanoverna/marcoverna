@@ -26,7 +26,9 @@
 .postTitle a {
   color: var(--color-text);
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .postTitle a:active {
@@ -66,7 +68,9 @@
   color: var(--color-text-secondary);
   text-decoration: none;
   align-self: flex-start;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .readMore:active {

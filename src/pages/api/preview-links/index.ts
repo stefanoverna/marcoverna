@@ -2,7 +2,12 @@ import type { APIRoute } from 'astro';
 import { SECRET_API_TOKEN } from 'astro:env/server';
 import { deserializeRawItem } from '@datocms/rest-client-utils';
 import { recordToWebsiteRoute } from '~/lib/datocms/recordInfo';
-import { handleUnexpectedError, invalidRequestResponse, json, withCORS } from '../utils';
+import {
+  handleUnexpectedError,
+  invalidRequestResponse,
+  json,
+  withCORS,
+} from '../utils';
 
 export const OPTIONS: APIRoute = () => {
   return new Response('OK', withCORS());
@@ -26,8 +31,11 @@ export const POST: APIRoute = async ({ url, request }) => {
       return invalidRequestResponse('Invalid token', 401);
     }
 
-    const body = await request.json() as Record<string, any>;
-    const recordUrl = await recordToWebsiteRoute(deserializeRawItem(body.item), body.locale);
+    const body = (await request.json()) as Record<string, any>;
+    const recordUrl = await recordToWebsiteRoute(
+      deserializeRawItem(body.item),
+      body.locale,
+    );
 
     const response: WebPreviewsResponse = { previewLinks: [] };
 

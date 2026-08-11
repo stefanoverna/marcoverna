@@ -8,14 +8,18 @@ import { WorkDetailQuery } from './_graphql';
 import styles from './_style.module.css';
 
 const { slug } = Astro.params;
-const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, { slug: slug! });
+const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, {
+  slug: slug!,
+});
 ---
 
 <Layout pageSeo={work?.seo}>
   {
     work && (
       <div class={styles.page}>
-        <a href="/" class={styles.back}>← Back to work</a>
+        <a href="/" class={styles.back}>
+          ← Back to work
+        </a>
 
         <div class={styles.layout}>
           <div class={styles.info}>
@@ -41,14 +45,16 @@ const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, { slug: sl
   <div class={styles.moreWorks}>
     <h2 class={styles.moreTitle}>More work</h2>
     <div class={styles.moreGrid}>
-      {allWorks
-        .filter((w) => w.slug !== slug)
-        .map((work) => (
-          <a href={`/work/${work.slug}`} class={styles.moreItem}>
-            <ResponsiveImage data={work.coverImage.responsiveImage} />
-            <p class={styles.moreItemTitle}>{work.title}</p>
-          </a>
-        ))}
+      {
+        allWorks
+          .filter((w) => w.slug !== slug)
+          .map((work) => (
+            <a href={`/work/${work.slug}`} class={styles.moreItem}>
+              <ResponsiveImage data={work.coverImage.responsiveImage} />
+              <p class={styles.moreItemTitle}>{work.title}</p>
+            </a>
+          ))
+      }
     </div>
   </div>
   <DraftModeQueryListener query={WorkDetailQuery} variables={{ slug: slug! }} />

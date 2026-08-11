@@ -1,6 +1,9 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import { StructuredText, ensureValidStructuredTextProps } from '@datocms/astro/StructuredText';
+import {
+  StructuredText,
+  ensureValidStructuredTextProps,
+} from '@datocms/astro/StructuredText';
 import { ResponsiveImage } from '~/components/ResponsiveImage';
 import { DraftModeQueryListener } from '~/components/DraftModeQueryListener';
 import { executeQuery } from '~/lib/datocms/executeQuery';
@@ -31,26 +34,30 @@ const formattedDate = blogPost?._firstPublishedAt
       {formattedDate && <time class={styles.date}>{formattedDate}</time>}
     </header>
 
-    {blogPost?.coverImage?.responsiveImage && (
-      <div class={styles.cover}>
-        <ResponsiveImage data={blogPost.coverImage.responsiveImage} />
-      </div>
-    )}
+    {
+      blogPost?.coverImage?.responsiveImage && (
+        <div class={styles.cover}>
+          <ResponsiveImage data={blogPost.coverImage.responsiveImage} />
+        </div>
+      )
+    }
 
-    {blogPost?.content && (
-      <div class={styles.body} data-datocms-content-link-group>
-        <StructuredText
-          {...ensureValidStructuredTextProps({
-            data: blogPost.content,
-            blockComponents: {
-              ImageBlockRecord: ImageBlock,
-              ImageGalleryBlockRecord: ImageGalleryBlock,
-              VideoBlockRecord: VideoBlock,
-            },
-          })}
-        />
-      </div>
-    )}
+    {
+      blogPost?.content && (
+        <div class={styles.body} data-datocms-content-link-group>
+          <StructuredText
+            {...ensureValidStructuredTextProps({
+              data: blogPost.content,
+              blockComponents: {
+                ImageBlockRecord: ImageBlock,
+                ImageGalleryBlockRecord: ImageGalleryBlock,
+                VideoBlockRecord: VideoBlock,
+              },
+            })}
+          />
+        </div>
+      )
+    }
   </article>
   <DraftModeQueryListener query={BlogPostQuery} variables={{ slug: slug! }} />
 </Layout>

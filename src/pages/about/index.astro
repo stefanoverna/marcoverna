@@ -38,10 +38,7 @@ const query = graphql(
 
 const { about } = await executeQuery(Astro, query);
 
-const instagramPosts = await getInstagramFeed().catch(
-  () => [],
-);
-
+const instagramPosts = await getInstagramFeed().catch(() => []);
 ---
 
 <Layout pageSeo={seoPageTitle('About')([])}>

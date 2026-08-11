@@ -16,7 +16,9 @@
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .back:active {
@@ -69,7 +71,8 @@
   margin: 0 0 1.2em;
 }
 
-.body :global(ul), .body :global(ol) {
+.body :global(ul),
+.body :global(ol) {
   margin: 0 0 1.2em;
   padding-left: 24px;
 }

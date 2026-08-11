@@ -19,29 +19,38 @@ export const POST: APIRoute = async ({ request, cache }) => {
     request.headers.get('Authorization') !==
     `Bearer ${CACHE_INVALIDATION_WEBHOOK_SECRET}`
   ) {
-    return new Response(JSON.stringify({ success: false, error: 'Unauthorized' }), {
-      status: 401,
-      ...withCORS(),
-    });
+    return new Response(
+      JSON.stringify({ success: false, error: 'Unauthorized' }),
+      {
+        status: 401,
+        ...withCORS(),
+      },
+    );
   }
 
   let body: CdaCacheTagsInvalidateWebhook;
   try {
     body = await request.json();
   } catch {
-    return new Response(JSON.stringify({ success: false, error: 'Invalid JSON' }), {
-      status: 400,
-      ...withCORS(),
-    });
+    return new Response(
+      JSON.stringify({ success: false, error: 'Invalid JSON' }),
+      {
+        status: 400,
+        ...withCORS(),
+      },
+    );
   }
 
   const tags = body.entity.attributes.tags;
 
   if (!tags.length) {
-    return new Response(JSON.stringify({ success: false, error: 'Missing tags' }), {
-      status: 400,
-      ...withCORS(),
-    });
+    return new Response(
+      JSON.stringify({ success: false, error: 'Missing tags' }),
+      {
+        status: 400,
+        ...withCORS(),
+      },
+    );
   }
 
   await cache.invalidate({ tags });

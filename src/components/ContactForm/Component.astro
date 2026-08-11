@@ -7,16 +7,13 @@ import styles from './style.module.css';
     <div class={styles.success} data-success-message>
       <p class={styles.successTitle}>Thank you for reaching out!</p>
       <p class={styles.successText}>
-        I just received the message, and I will reply you as soon as
-        possible!
+        I just received the message, and I will reply you as soon as possible!
       </p>
     </div>
 
     <form class={styles.form} method="post" action="#">
       <div class={styles.field}>
-        <label for="name" class={styles.label}>
-          Your name*
-        </label>
+        <label for="name" class={styles.label}> Your name* </label>
         <input
           type="text"
           id="name"
@@ -28,9 +25,7 @@ import styles from './style.module.css';
       </div>
 
       <div class={styles.field}>
-        <label for="email" class={styles.label}>
-          Your email*
-        </label>
+        <label for="email" class={styles.label}> Your email* </label>
         <input
           type="email"
           id="email"
@@ -42,9 +37,7 @@ import styles from './style.module.css';
       </div>
 
       <div class={styles.field}>
-        <label for="subject" class={styles.label}>
-          Subject*
-        </label>
+        <label for="subject" class={styles.label}> Subject* </label>
         <input
           type="text"
           id="subject"
@@ -56,22 +49,17 @@ import styles from './style.module.css';
       </div>
 
       <div class={styles.field}>
-        <label for="message" class={styles.label}>
-          Your message*
-        </label>
+        <label for="message" class={styles.label}> Your message* </label>
         <textarea
           id="message"
           name="message"
           placeholder="Your message"
           rows="3"
           required
-          class={styles.textarea}
-        ></textarea>
+          class={styles.textarea}></textarea>
       </div>
 
-      <button type="submit" class={styles.submit}>
-        Send message
-      </button>
+      <button type="submit" class={styles.submit}> Send message </button>
     </form>
   </contact-form>
 </div>
@@ -82,8 +70,12 @@ import styles from './style.module.css';
   class ContactForm extends HTMLElement {
     connectedCallback() {
       const form = this.querySelector<HTMLFormElement>('form');
-      const successMessage = this.querySelector<HTMLElement>('[data-success-message]');
-      const submitButton = this.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const successMessage = this.querySelector<HTMLElement>(
+        '[data-success-message]',
+      );
+      const submitButton = this.querySelector<HTMLButtonElement>(
+        'button[type="submit"]',
+      );
       const textarea = this.querySelector<HTMLTextAreaElement>('textarea');
 
       if (!form || !successMessage || !submitButton || !textarea) return;
@@ -120,7 +112,10 @@ import styles from './style.module.css';
 
           autosize.update(textarea);
 
-          successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          successMessage.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+          });
         } catch (error) {
           console.error('Form submission error:', error);
           alert('There was an error sending your message. Please try again.');

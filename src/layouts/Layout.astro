@@ -17,7 +17,10 @@ interface Props {
 const { pageSeo } = Astro.props;
 const draftMode = await isDraftModeEnabled(Astro.cookies);
 const data = await executeQuery(Astro, LayoutQuery);
-const seoData = ensureTitle()([...(pageSeo || []), ...(data._site.favicon || [])]);
+const seoData = ensureTitle()([
+  ...(pageSeo || []),
+  ...(data._site.favicon || []),
+]);
 ---
 
 <!doctype html>
@@ -26,7 +29,6 @@ const seoData = ensureTitle()([...(pageSeo || []), ...(data._site.favicon || [])
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Seo data={seoData} />
-
   </head>
   <body>
     <Header />

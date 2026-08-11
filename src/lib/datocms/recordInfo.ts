@@ -1,5 +1,11 @@
 import type { RawApiTypes } from '@datocms/cma-client';
-import { About, BlogPost, Contact, Work, type AnyModel } from './datocms-schema';
+import {
+  About,
+  BlogPost,
+  Contact,
+  Work,
+  type AnyModel,
+} from './datocms-schema';
 
 export async function recordToWebsiteRoute(
   item: RawApiTypes.Item<AnyModel>,

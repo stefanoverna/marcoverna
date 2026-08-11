@@ -35,7 +35,9 @@
 .email a {
   color: var(--color-text);
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .email a:active {
@@ -45,7 +47,6 @@
 .email a:hover {
   text-decoration: underline;
 }
-
 
 @media (max-width: 768px) {
   .page {

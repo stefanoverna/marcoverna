@@ -10,7 +10,8 @@ interface Props {
 
 const { data } = Astro.props;
 const { contact, about } = readFragment(FooterFragment, data);
-const instagramUrl = about?.instagramUrl || 'https://www.instagram.com/marcoverna.studio/';
+const instagramUrl =
+  about?.instagramUrl || 'https://www.instagram.com/marcoverna.studio/';
 const draftMode = await isDraftModeEnabled(Astro.cookies);
 ---
 
@@ -19,7 +20,9 @@ const draftMode = await isDraftModeEnabled(Astro.cookies);
     &copy; {new Date().getFullYear()} Marco Verna
     <span class={styles.separator}>·</span>
     <a
-      href={draftMode ? '/api/draft-mode/disable?redirect=' + Astro.url.pathname : '#'}
+      href={draftMode
+        ? '/api/draft-mode/disable?redirect=' + Astro.url.pathname
+        : '#'}
       class={styles.draftToggle}
       data-draft-toggle
     >
@@ -27,12 +30,10 @@ const draftMode = await isDraftModeEnabled(Astro.cookies);
     </a>
   </span>
   <nav class={styles.social}>
-    <a href={instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
-    {
-      contact?.email && (
-        <a href={`mailto:${contact.email}`}>{contact.email}</a>
-      )
-    }
+    <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
+      >Instagram</a
+    >
+    {contact?.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}
   </nav>
 </footer>
 
@@ -43,7 +44,7 @@ const draftMode = await isDraftModeEnabled(Astro.cookies);
       e.preventDefault();
       const token = prompt('Enter the preview secret token:');
       if (token) {
-        window.location.href = `/api/draft-mode/enable?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(window.location.pathname)}&${Date.now()}`;
+        window.location.href = `/api/draft-mode/enable?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(window.location.pathname)}`;
       }
     });
   }

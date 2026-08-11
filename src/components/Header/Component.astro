@@ -3,7 +3,10 @@ import { executeQuery } from '~/lib/datocms/executeQuery';
 import { HeaderQuery } from './_graphql';
 import styles from './style.module.css';
 
-const { about, contact, _allBlogPostsMeta } = await executeQuery(Astro, HeaderQuery);
+const { about, contact, _allBlogPostsMeta } = await executeQuery(
+  Astro,
+  HeaderQuery,
+);
 const hasAbout = !!about;
 const hasContact = !!contact;
 const hasBlog = !!_allBlogPostsMeta.count;
@@ -21,8 +24,26 @@ const isBlog = currentPath.startsWith('/blog');
   </a>
   <nav class={styles.nav}>
     <a href="/" class={isWork ? styles.navActive : ''}>work</a>
-    {hasAbout && <a href="/about" class={isAbout ? styles.navActive : ''}>about</a>}
-    {hasContact && <a href="/contact" class={isContact ? styles.navActive : ''}>contacts</a>}
-    {hasBlog && <a href="/blog" class={isBlog ? styles.navActive : ''}>blog</a>}
+    {
+      hasAbout && (
+        <a href="/about" class={isAbout ? styles.navActive : ''}>
+          about
+        </a>
+      )
+    }
+    {
+      hasContact && (
+        <a href="/contact" class={isContact ? styles.navActive : ''}>
+          contacts
+        </a>
+      )
+    }
+    {
+      hasBlog && (
+        <a href="/blog" class={isBlog ? styles.navActive : ''}>
+          blog
+        </a>
+      )
+    }
   </nav>
 </header>

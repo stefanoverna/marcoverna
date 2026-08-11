@@ -1,8 +1,8 @@
-import type { Client } from "@datocms/cma-client-node";
-import * as fs from "node:fs";
-import * as path from "node:path";
-import PQueue from "p-queue";
-import { parse } from "datocms-structured-text-dastdown";
+import type { Client } from '@datocms/cma-client-node';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import PQueue from 'p-queue';
+import { parse } from 'datocms-structured-text-dastdown';
 
 interface WorkData {
   slug: string;
@@ -15,8 +15,8 @@ interface WorkData {
 const CONCURRENCY = 5;
 
 export default async function (client: Client): Promise<void> {
-  const worksPath = path.resolve(import.meta.dirname, "../works.json");
-  const works: WorkData[] = JSON.parse(fs.readFileSync(worksPath, "utf-8"));
+  const worksPath = path.resolve(import.meta.dirname, '../works.json');
+  const works: WorkData[] = JSON.parse(fs.readFileSync(worksPath, 'utf-8'));
 
   console.log(`${works.length} works to import`);
 
@@ -33,7 +33,7 @@ export default async function (client: Client): Promise<void> {
 
     // Upload cover
     let coverUploadId: string | null = null;
-    const coverBasename = decodeURIComponent(w.cover.split("/").pop() || "");
+    const coverBasename = decodeURIComponent(w.cover.split('/').pop() || '');
     process.stdout.write(`  Cover: ${coverBasename}... `);
     try {
       const upload = await client.uploads.createFromUrl({
@@ -61,7 +61,7 @@ export default async function (client: Client): Promise<void> {
     for (let j = 0; j < w.images.length; j++) {
       const idx = j;
       const url = w.images[j];
-      const filename = decodeURIComponent(url.split("/").pop() || `image-${j}`);
+      const filename = decodeURIComponent(url.split('/').pop() || `image-${j}`);
       queue.add(async () => {
         try {
           const upload = await client.uploads.createFromUrl({
@@ -89,19 +89,19 @@ export default async function (client: Client): Promise<void> {
     // Create record
     try {
       await client.items.create({
-        item_type: { type: "item_type", id: "WJhw7cpJS1eoFXjLjgqvyw" },
+        item_type: { type: 'item_type', id: 'WJhw7cpJS1eoFXjLjgqvyw' },
         title: w.title,
         slug: w.slug,
         position,
         cover_image: { upload_id: coverUploadId },
         description: w.description.trim()
-          ? parse(w.description.trim().replace(/\n/g, "\n\n"))
+          ? parse(w.description.trim().replace(/\n/g, '\n\n'))
           : null,
         images: validIds.map((id) => ({ upload_id: id })),
         seo: {
           title: w.title,
           description: w.description
-            ? w.description.replace(/\n/g, " ").trim()
+            ? w.description.replace(/\n/g, ' ').trim()
             : w.title,
         },
       });

@@ -1,10 +1,13 @@
 import { DATOCMS_BASE_EDITING_URL } from 'astro:env/server';
 import { defineMiddleware } from 'astro:middleware';
-import { isDraftModeEnabled } from '~/lib/draftMode';
+import {
+  hasDraftPrefix,
+  isDraftModeEnabled,
+  withDraftPrefix,
+  withoutDraftPrefix,
+} from '~/lib/draftMode';
 
 const baseEditingOrigin = new URL(DATOCMS_BASE_EDITING_URL).origin;
-
-const DRAFT_PREFIX = '/__draft';
 
 class DraftLinkRewriter {
   constructor(
@@ -17,14 +20,14 @@ class DraftLinkRewriter {
     try {
       const u = new URL(value, this.origin);
       if (u.origin !== this.origin) return;
-      if (
-        u.pathname.startsWith(`${DRAFT_PREFIX}/`) ||
-        u.pathname.startsWith('/api/') ||
-        u.pathname.startsWith('/_astro/')
-      ) return;
-      u.pathname = `${DRAFT_PREFIX}${u.pathname}`;
-      element.setAttribute(this.attributeName, value[0] === '/' ? u.pathname + u.search + u.hash : u.toString());
-    } catch { /* ignore malformed */ }
+      u.pathname = withDraftPrefix(u.pathname);
+      element.setAttribute(
+        this.attributeName,
+        value[0] === '/' ? u.pathname + u.search + u.hash : u.toString(),
+      );
+    } catch {
+      /* ignore malformed */
+    }
   }
 }
 
@@ -41,11 +44,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   const draft = await isDraftModeEnabled(context);
-  const isDraftPath = url.pathname.startsWith(`${DRAFT_PREFIX}/`);
-  const cleanPath = isDraftPath ? url.pathname.slice(DRAFT_PREFIX.length) || '/' : url.pathname;
+  const isDraftPath = hasDraftPrefix(url.pathname);
+  const cleanPath = withoutDraftPrefix(url.pathname);
 
   if (draft && !isDraftPath) {
-    return context.redirect(`${DRAFT_PREFIX}${url.pathname}${url.search}`);
+    return context.redirect(`${withDraftPrefix(url.pathname)}${url.search}`);
   }
   if (!draft && isDraftPath) {
     return context.redirect(`${cleanPath}${url.search}`);
@@ -75,10 +78,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       response = rewriter.transform(response);
     }
   } else {
-    response.headers.set(
-      'Cache-Control',
-      'public, max-age=0, must-revalidate',
-    );
+    response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
   }
 
   return response;

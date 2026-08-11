@@ -12,7 +12,9 @@
   margin-bottom: 40px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .back:active {
