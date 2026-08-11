@@ -6,6 +6,7 @@ export const ImageBlockFragment = graphql(
     fragment ImageBlockFragment on ImageBlockRecord {
       id
       image {
+        title
         responsiveImage(imgixParams: { fit: max, w: 1200 }) {
           ...ResponsiveImageFragment
         }

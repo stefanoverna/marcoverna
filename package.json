@@ -33,6 +33,7 @@
     "gql.tada": "^1.11.3",
     "jose": "^6.2.8",
     "serialize-error": "^13.0.1",
+    "swiper": "^14.1.0",
     "typescript": "^6.0.3"
   },
   "devDependencies": {

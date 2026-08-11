@@ -1,9 +1,150 @@
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  display: block;
   margin: 48px 0;
 }
-.item {
+
+.main {
+  display: block;
+  width: 100%;
+  --swiper-navigation-color: #fff;
+  --swiper-navigation-size: 34px;
+}
+
+.main::part(button-prev),
+.main::part(button-next) {
+  opacity: 0;
+  filter: drop-shadow(0 1px 3px rgb(0 0 0 / 45%));
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.main:hover::part(button-prev),
+.main:hover::part(button-next),
+.main:focus-within::part(button-prev),
+.main:focus-within::part(button-next) {
+  opacity: 1;
+}
+
+.slide {
+  display: block;
+}
+
+.figure {
+  position: relative;
   margin: 0;
+}
+
+.figure :global(img) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 56px 20px 16px;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.4;
+  background: linear-gradient(to top, rgb(0 0 0 / 55%), transparent);
+  pointer-events: none;
+}
+
+.thumbsWrap {
+  position: relative;
+  margin-top: 4px;
+}
+
+.thumbs {
+  display: block;
+}
+
+.thumbNav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-faded);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.thumbNav:hover {
+  color: var(--color-text);
+}
+
+.thumbNav svg {
+  width: 16px;
+  height: 16px;
+}
+
+.thumbPrev {
+  left: -44px;
+}
+
+.thumbNext {
+  right: -44px;
+}
+
+.thumbNav:global(.swiper-button-disabled) {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.thumbNav:global(.swiper-button-lock) {
+  display: none;
+}
+
+.thumb {
+  width: 130px;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.thumb:hover {
+  opacity: 0.65;
+}
+
+.thumb:global(.swiper-slide-thumb-active) {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .caption {
+    padding: 40px 12px 12px;
+    font-size: 14px;
+  }
+
+  .thumb {
+    width: 88px;
+  }
+
+  .thumbNav {
+    top: 50%;
+    bottom: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 85%);
+    color: var(--color-text);
+    transform: translateY(-50%);
+  }
+
+  .thumbPrev {
+    left: 4px;
+  }
+
+  .thumbNext {
+    right: 4px;
+  }
 }

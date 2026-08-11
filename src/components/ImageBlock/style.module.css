@@ -1,3 +1,24 @@
 .image {
+  position: relative;
   margin: 48px 0;
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 56px 20px 16px;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.4;
+  background: linear-gradient(to top, rgb(0 0 0 / 55%), transparent);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .caption {
+    padding: 40px 12px 12px;
+    font-size: 14px;
+  }
 }

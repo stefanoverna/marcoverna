@@ -14,4 +14,9 @@ const data = readFragment(ImageBlockFragment, block);
 
 <figure class={styles.image} data-datocms-content-link-boundary>
   <ResponsiveImage data={data.image.responsiveImage} />
+  {
+    data.image.title && (
+      <figcaption class={styles.caption}>{data.image.title}</figcaption>
+    )
+  }
 </figure>

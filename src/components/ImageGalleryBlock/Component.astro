@@ -12,12 +12,101 @@ const { block } = Astro.props;
 const data = readFragment(ImageGalleryBlockFragment, block);
 ---
 
-<div class={styles.gallery} data-datocms-content-link-boundary>
-  {
-    data.images.map((img) => (
-      <figure class={styles.item}>
-        <ResponsiveImage data={img.responsiveImage} />
-      </figure>
-    ))
+<image-gallery class={styles.gallery} data-datocms-content-link-boundary>
+  <swiper-container class={styles.main} init="false" data-main>
+    {
+      data.images.map((image) => (
+        <swiper-slide class={styles.slide}>
+          <figure class={styles.figure}>
+            <ResponsiveImage data={image.responsiveImage} />
+            {image.title && (
+              <figcaption class={styles.caption}>{image.title}</figcaption>
+            )}
+          </figure>
+        </swiper-slide>
+      ))
+    }
+  </swiper-container>
+
+  <div class={styles.thumbsWrap}>
+    <button
+      type="button"
+      class:list={[styles.thumbNav, styles.thumbPrev]}
+      aria-label="Previous thumbnails"
+      data-thumb-prev
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M15 5 8 12l7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <swiper-container class={styles.thumbs} init="false" data-thumbs>
+      {
+        data.images.map((image) => (
+          <swiper-slide class={styles.thumb}>
+            <ResponsiveImage data={image.thumbnail} />
+          </swiper-slide>
+        ))
+      }
+    </swiper-container>
+
+    <button
+      type="button"
+      class:list={[styles.thumbNav, styles.thumbNext]}
+      aria-label="Next thumbnails"
+      data-thumb-next
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="m9 5 7 7-7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+</image-gallery>
+
+<script>
+  import { register, type SwiperContainer } from 'swiper/element/bundle';
+
+  register();
+
+  class ImageGallery extends HTMLElement {
+    connectedCallback() {
+      const main = this.querySelector<SwiperContainer>('[data-main]');
+      const thumbs = this.querySelector<SwiperContainer>('[data-thumbs]');
+      const prevEl = this.querySelector<HTMLButtonElement>('[data-thumb-prev]');
+      const nextEl = this.querySelector<HTMLButtonElement>('[data-thumb-next]');
+
+      if (!main || !thumbs || !prevEl || !nextEl) return;
+
+      Object.assign(thumbs, {
+        slidesPerView: 'auto',
+        slidesPerGroupAuto: true,
+        spaceBetween: 4,
+        watchSlidesProgress: true,
+        navigation: { prevEl, nextEl },
+      });
+      thumbs.initialize();
+
+      Object.assign(main, {
+        spaceBetween: 0,
+        navigation: true,
+        keyboard: { enabled: true },
+        thumbs: { swiper: thumbs.swiper },
+      });
+      main.initialize();
+    }
   }
-</div>
+
+  customElements.define('image-gallery', ImageGallery);
+</script>
