@@ -1,0 +1,47 @@
+.badge {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  /* Inverted against the site's monochrome palette, so it reads as an
+     overlay rather than part of the page. */
+  background: var(--color-text);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f5a623;
+}
+
+.label {
+  color: var(--color-background);
+}
+
+.exit {
+  padding-left: 10px;
+  border-left: 1px solid rgb(255 255 255 / 20%);
+  color: rgb(255 255 255 / 60%);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.exit:hover {
+  color: var(--color-background);
+}
+
+@media (max-width: 768px) {
+  .badge {
+    right: var(--container-padding-mobile);
+    bottom: var(--container-padding-mobile);
+  }
+}

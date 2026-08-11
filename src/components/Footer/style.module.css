@@ -13,21 +13,6 @@
   color: var(--color-text-faded);
 }
 
-.separator {
-  margin: 0 6px;
-}
-
-.draftToggle {
-  font-size: 13px;
-  color: var(--color-text-faded);
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.draftToggle:hover {
-  color: var(--color-text);
-}
-
 .social {
   display: flex;
   gap: 24px;

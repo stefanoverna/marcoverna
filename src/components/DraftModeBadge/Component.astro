@@ -1,0 +1,13 @@
+---
+import styles from './style.module.css';
+
+const exitUrl = `/api/draft-mode/disable?redirect=${encodeURIComponent(
+  Astro.url.pathname,
+)}`;
+---
+
+<div class={styles.badge} role="status">
+  <span class={styles.dot} aria-hidden="true"></span>
+  <span class={styles.label}>Draft mode</span>
+  <a href={exitUrl} class={styles.exit}>Exit</a>
+</div>

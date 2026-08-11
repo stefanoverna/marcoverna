@@ -18,34 +18,33 @@ const draftMode = await isDraftModeEnabled(Astro.cookies);
 <footer class={styles.footer}>
   <span class={styles.left}>
     &copy; {new Date().getFullYear()} Marco Verna
-    <span class={styles.separator}>·</span>
-    <a
-      href={draftMode
-        ? '/api/draft-mode/disable?redirect=' + Astro.url.pathname
-        : '#'}
-      class={styles.draftToggle}
-      data-draft-toggle
-    >
-      {draftMode ? 'Exit preview' : 'Preview'}
-    </a>
   </span>
   <nav class={styles.social}>
     <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
       >Instagram</a
     >
     {contact?.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}
+    {
+      /* When draft mode is on, the floating badge is the way out — no need
+         for a second control down here. */
+      !draftMode && (
+        <a href="#" data-draft-toggle>
+          Log in
+        </a>
+      )
+    }
   </nav>
 </footer>
 
 <script>
   const toggle = document.querySelector('[data-draft-toggle]');
-  if (toggle && toggle.getAttribute('href') === '#') {
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const token = prompt('Enter the preview secret token:');
-      if (token) {
-        window.location.href = `/api/draft-mode/enable?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(window.location.pathname)}`;
-      }
-    });
-  }
+  toggle?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const token = prompt(
+      'Paste your preview token from DatoCMS to view unpublished changes on this site:',
+    );
+    if (token) {
+      window.location.href = `/api/draft-mode/enable?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(window.location.pathname)}`;
+    }
+  });
 </script>
