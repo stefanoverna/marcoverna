@@ -15,7 +15,12 @@ import styles from './_style.module.css';
 
 const { slug } = Astro.params;
 
-const { blogPost } = await executeQuery(Astro, BlogPostQuery, { slug: slug! });
+const { blogPost } = await executeQuery(
+  Astro,
+  BlogPostQuery,
+  { slug: slug! },
+  'blog-post',
+);
 
 const formattedDate = blogPost?._firstPublishedAt
   ? new Date(blogPost._firstPublishedAt).toLocaleDateString('en-US', {

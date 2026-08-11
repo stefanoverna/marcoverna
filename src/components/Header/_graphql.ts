@@ -8,8 +8,8 @@ export const HeaderQuery = graphql(`
     contact {
       __typename
     }
-    _allBlogPostsMeta {
-      count
+    blogPost {
+      id
     }
   }
 `);

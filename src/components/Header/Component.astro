@@ -3,13 +3,15 @@ import { executeQuery } from '~/lib/datocms/executeQuery';
 import { HeaderQuery } from './_graphql';
 import styles from './style.module.css';
 
-const { about, contact, _allBlogPostsMeta } = await executeQuery(
+const { about, contact, blogPost } = await executeQuery(
   Astro,
   HeaderQuery,
+  undefined,
+  'header',
 );
 const hasAbout = !!about;
 const hasContact = !!contact;
-const hasBlog = !!_allBlogPostsMeta.count;
+const hasBlog = !!blogPost?.id;
 
 const currentPath = Astro.url.pathname;
 const isWork = currentPath === '/' || currentPath.startsWith('/work/');

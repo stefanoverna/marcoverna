@@ -19,7 +19,7 @@ const query = graphql(`
   }
 `);
 
-const { contact } = await executeQuery(Astro, query);
+const { contact } = await executeQuery(Astro, query, undefined, 'contact');
 ---
 
 <Layout pageSeo={seoPageTitle('Contact me')([])}>

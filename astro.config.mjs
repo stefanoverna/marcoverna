@@ -1,6 +1,5 @@
 // @ts-check
 import cloudflare from '@astrojs/cloudflare';
-import { cacheCloudflare } from '@astrojs/cloudflare/cache';
 import { defineConfig, envField } from 'astro/config';
 
 // https://astro.build/config

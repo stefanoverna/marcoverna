@@ -6,8 +6,14 @@ import { executeQuery } from '~/lib/datocms/executeQuery';
 import { seoPageTitle } from '~/lib/datocms/seo';
 import { BlogIndexQuery } from './_graphql';
 import styles from './_style.module.css';
+import { undefined } from 'astro:schema';
 
-const { allBlogPosts } = await executeQuery(Astro, BlogIndexQuery);
+const { allBlogPosts } = await executeQuery(
+  Astro,
+  BlogIndexQuery,
+  undefined,
+  'blog-index',
+);
 ---
 
 <Layout pageSeo={seoPageTitle('Blog')([])}>
