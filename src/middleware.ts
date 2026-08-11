@@ -18,15 +18,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   const draft = await isDraftModeEnabled(context);
 
-  response.headers.set(
-    'Cache-Control',
-    'private, no-cache, no-store, must-revalidate',
-  );
-  
-  // response.headers.set(
-  //   'Cache-Control',
-  //   'public, max-age=60, stale-while-revalidate=3600',
-  // );
+  if (draft) {
+    response.headers.set('Cache-Control', 'private, no-store');
+  } else {
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=0, must-revalidate',
+    );
+  }
 
   return response;
 });

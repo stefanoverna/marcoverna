@@ -5,3 +5,4 @@ SIGNED_COOKIE_JWT_SECRET=run_openssl_rand_hex_32
 DRAFT_MODE_COOKIE_NAME=datocms-draft-mode
 DATOCMS_BASE_EDITING_URL=https://your-project.admin.datocms.com/environments/main
 APIFY_API_TOKEN=your_apify_api_token_here
+CACHE_INVALIDATION_WEBHOOK_SECRET=your_webhook_secret_here

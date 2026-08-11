@@ -1,11 +1,15 @@
 // @ts-check
 import cloudflare from '@astrojs/cloudflare';
+import { cacheCloudflare } from '@astrojs/cloudflare/cache';
 import { defineConfig, envField } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
+  cache: {
+    provider: cacheCloudflare(),
+  },
   vite: {
     ssr: {
       noExternal: ['@datocms/astro'],
@@ -42,6 +46,10 @@ export default defineConfig({
         default: 'https://foobar.admin.datocms.com',
       }),
       APIFY_API_TOKEN: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      CACHE_INVALIDATION_WEBHOOK_SECRET: envField.string({
         context: 'server',
         access: 'secret',
       }),
