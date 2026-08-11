@@ -16,7 +16,7 @@ interface Props {
 
 const { pageSeo } = Astro.props;
 const draftMode = await isDraftModeEnabled(Astro.cookies);
-const data = await executeQuery(Astro, LayoutQuery, undefined, 'layout');
+const data = await executeQuery(Astro, LayoutQuery);
 const seoData = ensureTitle()([
   ...(pageSeo || []),
   ...(data._site.favicon || []),

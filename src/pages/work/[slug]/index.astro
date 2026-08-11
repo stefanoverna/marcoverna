@@ -8,14 +8,9 @@ import { WorkDetailQuery } from './_graphql';
 import styles from './_style.module.css';
 
 const { slug } = Astro.params;
-const { work, allWorks } = await executeQuery(
-  Astro,
-  WorkDetailQuery,
-  {
-    slug: slug!,
-  },
-  'work-detail',
-);
+const { work, allWorks } = await executeQuery(Astro, WorkDetailQuery, {
+  slug: slug!,
+});
 ---
 
 <Layout pageSeo={work?.seo}>

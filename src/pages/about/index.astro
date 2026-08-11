@@ -36,7 +36,7 @@ const query = graphql(
   [ResponsiveImageFragment],
 );
 
-const { about } = await executeQuery(Astro, query, undefined, 'about-page');
+const { about } = await executeQuery(Astro, query);
 
 const instagramPosts = await getInstagramFeed().catch(() => []);
 ---
