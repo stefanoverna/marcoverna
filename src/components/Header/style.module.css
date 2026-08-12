@@ -9,7 +9,7 @@
 }
 
 .logo img {
-  height: 48px;
+  height: 114px;
   width: auto;
 }
 
@@ -20,9 +20,8 @@
 }
 
 .nav a {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 2px;
   text-decoration: none;
   color: var(--color-text-faded);
   text-transform: uppercase;

@@ -40,12 +40,12 @@
 }
 
 .title {
-  font-size: 32px;
+  font-size: 50px;
   font-weight: 700;
   line-height: 1.1;
   margin: 0 0 24px;
   color: var(--color-text);
-  letter-spacing: -0.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .moreTitle {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 50px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--color-text);
@@ -136,7 +136,7 @@
   }
 
   .title {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 16px;
   }
 
@@ -146,6 +146,10 @@
 
   .moreWorks {
     padding: 48px var(--container-padding-mobile) 32px;
+  }
+
+  .moreTitle {
+    font-size: 32px;
   }
 
   .moreGrid {

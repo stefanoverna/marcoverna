@@ -11,12 +11,12 @@
 }
 
 .title {
-  font-size: 32px;
+  font-size: 50px;
   font-weight: 700;
   margin: 0 0 24px;
   line-height: 1.1;
   text-transform: uppercase;
-  letter-spacing: -0.5px;
+  letter-spacing: 2px;
 }
 
 .info {
@@ -56,6 +56,10 @@
   .layout {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .title {
+    font-size: 32px;
   }
 
   .form {

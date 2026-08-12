@@ -19,6 +19,12 @@ export async function getInstagramFeed(): Promise<InstagramPost[]> {
 
   const items: any[] = await res.json();
 
+  // Apify returns the dataset in scrape order, not chronological order
+  const postedAt = (item: any) =>
+    item.timestamp ? Date.parse(item.timestamp) || 0 : 0;
+
+  items.sort((a, b) => postedAt(b) - postedAt(a));
+
   return items.map((item: any) => ({
     id: item.id,
     code: item.shortCode,

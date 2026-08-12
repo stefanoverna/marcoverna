@@ -10,8 +10,16 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'Geist',
-      cssVariable: '--font-geist',
+      name: 'Poppins',
+      cssVariable: '--font-poppins',
+      weights: [400, 600, 700],
+      subsets: ['latin'],
+      fallbacks: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Open Sans',
+      cssVariable: '--font-open-sans',
       weights: [400, 600, 700],
       subsets: ['latin'],
       fallbacks: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],

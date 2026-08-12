@@ -7,7 +7,9 @@
   --color-border: #ddd;
   --color-code-bg: #f5f5f5;
   --font-family:
-    var(--font-geist), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    var(--font-open-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading:
+    var(--font-poppins), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --container-max: 1280px;
   --container-padding: 48px;
   --container-padding-mobile: 16px;
@@ -24,6 +26,15 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 * {

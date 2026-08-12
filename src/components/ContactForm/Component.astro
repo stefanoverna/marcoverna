@@ -50,12 +50,16 @@ import styles from './style.module.css';
 
       <div class={styles.field}>
         <label for="message" class={styles.label}> Your message* </label>
+        <p id="message-hint" class={styles.hint}>
+          Scope of the project, amount of images, deadline, references...
+        </p>
         <textarea
           id="message"
           name="message"
           placeholder="Your message"
           rows="3"
           required
+          aria-describedby="message-hint"
           class={styles.textarea}></textarea>
       </div>
 

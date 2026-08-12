@@ -10,19 +10,35 @@ interface Props {
 
 const { projects } = Astro.props;
 const projectsData = projects.map((p) => readFragment(WorkFragment, p));
+
+const COLUMN_COUNT = 2;
+
+// Deal the projects into the columns round-robin, so that reading the masonry
+// left-to-right, top-to-bottom follows the original order
+const columns = Array.from({ length: COLUMN_COUNT }, (_, column) =>
+  projectsData
+    .map((project, index) => ({ project, index }))
+    .filter(({ index }) => index % COLUMN_COUNT === column),
+);
 ---
 
 <div class={styles.wrapper}>
   <div class={styles.grid}>
     {
-      projectsData.map((project) => {
-        return (
-          <a href={`/work/${project.slug}`} class={styles.item}>
-            <ResponsiveImage data={project.coverImage.responsiveImage} />
-            <p class={styles.itemTitle}>{project.title}</p>
-          </a>
-        );
-      })
+      columns.map((column) => (
+        <div class={styles.column}>
+          {column.map(({ project, index }) => (
+            <a
+              href={`/work/${project.slug}`}
+              class={styles.item}
+              style={`--order: ${index}`}
+            >
+              <ResponsiveImage data={project.coverImage.responsiveImage} />
+              <p class={styles.itemTitle}>{project.title}</p>
+            </a>
+          ))}
+        </div>
+      ))
     }
   </div>
 </div>
