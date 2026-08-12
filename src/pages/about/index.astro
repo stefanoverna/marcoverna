@@ -36,9 +36,10 @@ const query = graphql(
   [ResponsiveImageFragment],
 );
 
-const { about } = await executeQuery(Astro, query);
-
-const instagramPosts = await getInstagramFeed().catch(() => []);
+const [{ about }, instagramPosts] = await Promise.all([
+  executeQuery(Astro, query),
+  getInstagramFeed().catch(() => []),
+]);
 ---
 
 <Layout pageSeo={seoPageTitle('About')([])}>
