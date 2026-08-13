@@ -4,6 +4,7 @@
   "compatibility_flags": ["global_fetch_strictly_public"],
   "name": "marcoverna",
   "main": "@astrojs/cloudflare/entrypoints/server",
+  "routes": [{ "pattern": "marcoverna.studio", "custom_domain": true }],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
@@ -15,7 +16,7 @@
     "enabled": true,
   },
   "vars": {
-    "DATOCMS_BASE_EDITING_URL": "https://marco-verna.admin.datocms.com",
+    "DATOCMS_BASE_EDITING_URL": "https://marcoverna.admin.datocms.com",
     "DRAFT_MODE_COOKIE_NAME": "datocms-draft-mode",
   },
 }
