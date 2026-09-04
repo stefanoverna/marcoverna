@@ -8,14 +8,30 @@ import styles from './style.module.css';
   target="_blank"
   rel="noopener noreferrer"
 >
-  <span class={styles.pill}>New</span>
-  <span class={styles.brand}
-    ><span class={styles.brandItalic}>Color Scheme</span>
-    <span class={styles.brandBold}>Studio</span></span
-  >
-  <span class={styles.dot} aria-hidden="true"></span>
-  <span class={`${styles.text} ${styles.textDesc}`}
-    >— a free tool for studying color relationships</span
-  >
-  <span class={styles.arrow} aria-hidden="true">→</span>
+  <span class={styles.track}>
+    <span class={styles.content}>
+      <span class={styles.pill}>New</span>
+      <span class={styles.brand}
+        ><span class={styles.brandItalic}>Color Scheme</span>
+        <span class={styles.brandBold}>Studio</span></span
+      >
+      <span class={styles.dot} aria-hidden="true"></span>
+      <span class={styles.text}
+        >— a free tool for studying color relationships</span
+      >
+      <span class={styles.arrow} aria-hidden="true">→</span>
+    </span>
+    <span class={styles.content} aria-hidden="true">
+      <span class={styles.pill}>New</span>
+      <span class={styles.brand}
+        ><span class={styles.brandItalic}>Color Scheme</span>
+        <span class={styles.brandBold}>Studio</span></span
+      >
+      <span class={styles.dot}></span>
+      <span class={styles.text}
+        >— a free tool for studying color relationships</span
+      >
+      <span class={styles.arrow}>→</span>
+    </span>
+  </span>
 </a>
