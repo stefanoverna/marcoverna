@@ -52,12 +52,6 @@ img {
   outline-offset: 2px;
 }
 
-@media (max-width: 768px) {
-  main {
-    padding-top: 120px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

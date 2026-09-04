@@ -1,6 +1,7 @@
 ---
 import Font from 'astro/components/Font.astro';
 import { Seo, type TitleMetaLinkTag } from '@datocms/astro/Seo';
+import { AnnouncementBar } from '~/components/AnnouncementBar';
 import { Header } from '~/components/Header';
 import { Footer } from '~/components/Footer';
 import ContentLink from '~/components/ContentLink.astro';
@@ -35,6 +36,7 @@ const seoData = ensureTitle()([
     <Seo data={seoData} />
   </head>
   <body>
+    <AnnouncementBar />
     <Header />
     <main>
       <slot />
